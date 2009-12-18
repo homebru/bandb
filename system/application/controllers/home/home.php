@@ -83,14 +83,6 @@ class Home extends Controller {
 		$this->load->view('home',$data);
 	}
 	
-	function get_classifications()
-	{
-		$this->db->query ( 'SELECT ClassficationText, ClassficationID, COALESCE(UserDefault,0) AS UserDefault
-							FROM Classification
-							WHERE Disabled IS NULL
-							ORDER BY ClassficationText');
-	}
-	
 	function get_classification_count()
 	{
 		return( $this->db->query ( 'SELECT COUNT(BBData.Classification) AS ClassCount, Classification.ClassficationText  As ClassficationText

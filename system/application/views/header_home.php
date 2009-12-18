@@ -9,20 +9,20 @@
                         Online Advertising Intelligence</div>
                     <div class="floatRight">
                         <div class="inner">
-                            <a href="login.aspx">login</a></div>
+                            <a href="../login">login</a></div>
                     </div>
                 </div>
             </div>
             <div id="Nav">
                 <div class="holder">
                     <ul>
-                        <li><a href="getstarted.aspx">Get Started</a></li>
-                        <li><a href="contact_us">Contact Us</a></li>
-                        <li><a href="publishers">Publishers</a></li>
-                        <li><a href="<?php echo base_url(); ?>chyrp">Blog</a></li>
-                        <li><a href="glossary">Glossary</a></li>
-                        <li><a href="pricing">Our Services</a></li>
-                        <li><a href="about_us">About Us</a></li>
+                        <li><a href="../getstarted.aspx">Get Started</a></li>
+                        <li><a href="../contact_us">Contact Us</a></li>
+                        <li><a href="../publishers">Publishers</a></li>
+                        <li><a href="<?php echo base_url(); ?>blog">Blog</a></li>
+                        <li><a href="../glossary">Glossary</a></li>
+                        <li><a href="../pricing">Our Services</a></li>
+                        <li><a href="../about_us">About Us</a></li>
                         <li><a href="home" class="on">Home</a></li>
                     </ul>
                 </div>
@@ -46,7 +46,7 @@
                             <div class="fL">
                                 <img src="../images/left.gif" alt="" width="49" height="88" /></div>
                             <div class="fL plans">
-                                <a href="pricing.aspx">
+                                <a href="../pricing">
                                     <img src="../images/see-plans.gif" alt="" width="337" height="64" border="0" /></a></div>
                             <div class="fL">
                                 <img src="../images/right.gif" alt="" width="47" height="88" /></div>

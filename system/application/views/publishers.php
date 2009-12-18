@@ -1,7 +1,6 @@
 			<div>
               <div style="padding:20px">
-                <span style="font-weight:bold; font-style:italic; font-size:12pt; color:#ffce62; font-family:Arial, Helvetica, sans-serif;">Publishers</span>
-                <strong>- Is your site in our database?</strong>
+                <span style="font-weight:bold; font-style:italic; font-size:12pt; color:#ffce62; font-family:Arial, Helvetica, sans-serif;">Publishers</span><strong>- Is your site in our database?</strong>
                 <br />
                 <span style="color:#F00;">Please enter your website name (e.g.  bedandbreakfast.com)</span>
                 <br />

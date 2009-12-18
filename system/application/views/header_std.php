@@ -265,7 +265,7 @@ function validate_url(value)
 									<li class="archive">
 										<a id="MyMenu_lnkmenu7" class="archive" href="gds">GDS</a></li>
 									<li class="archive">
-										<a id="MyMenu_lnkmenu8" class="archive" href="<?php echo base_url(); ?>chyrp">Blog</a></li>
+										<a id="MyMenu_lnkmenu8" class="archive" href="<?php echo base_url(); ?>blog">Blog</a></li>
 									
 								</ul>
 							</div>

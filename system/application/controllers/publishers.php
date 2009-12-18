@@ -136,6 +136,31 @@ class Publishers extends Controller {
 
 	}
 	
+	function validUrl($host, $page =‘/’, $port=80) 
+	{
+	//server connection
+	$fp= fsockopen($host,$port,$errno, $errstr, 30);
+	if ($fp) {//ok, we are connected
+		//lets create the HTTP header to send
+		$header = "GET $page HTTP/1.0\r\n";
+		$header .= "Connection: Close\r\n\r\n";
+ 
+		//sending it
+		fwrite($fp, $header);
+ 
+		//getting server response (just one line)
+		$ret=fgets($fp);
+ 
+		//see if we got an 200 OK status
+		if (ereg(‘200 OK’,$ret)) {
+			fclose($fp);
+			return true;
+		}
+		fclose($fp);
+	}
+	return false;
+	}
+	
 }
 
 /* End of file publishers.php */

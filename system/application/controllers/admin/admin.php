@@ -9,6 +9,10 @@ class Admin extends Application
 	
 	function index()
 	{
+		$this->load->helper('url');
+		$this->load->helper('html');
+		$this->load->helper('form');
+
 		if(logged_in())
 		{
 			$this->auth->view('dashboard');

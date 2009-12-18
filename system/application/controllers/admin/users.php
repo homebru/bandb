@@ -33,12 +33,15 @@ class Users extends Application
 	function add()
 	{
 		$this->auth->register(FALSE);
+		$row_id = $this->db->insert_id();
+		$this->send_add_email($row_id, $_POST["username"], $_POST["password"], $_POST["email"]);
 	}
 	
 	function edit($id)
 	{
 		$this->auth->register(FALSE, TRUE, $id);
 	}
+	
 }
 
 ?>

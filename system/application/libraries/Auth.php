@@ -39,6 +39,8 @@ class Auth
 		
 		$this->CI->lang->load('auth', 'english');
 		
+		$this->CI->form_validation->set_error_delimiters('<p class="error">', '</p>');
+		
 		$this->user_table = $this->CI->db->dbprefix($this->config['auth_user_table']);
 		$this->group_table = $this->CI->db->dbprefix($this->config['auth_group_table']);
 		
@@ -186,7 +188,7 @@ class Auth
 	* @param bool whether or not the user is simply being edited, used in admin panel
 	* @param string the user ID to be edited, used in the admin panel
 	*/
-	function register($login = TRUE, $edit = FALSE, $id = NULL)
+	function register($login = FALSE, $edit = FALSE, $id = NULL)
 	{
 		if($edit === TRUE)
 		{
@@ -218,6 +220,7 @@ class Auth
 		{
 			
 			$username = set_value('username');
+			$uncrypt_password = set_value('password');
 			$password = $this->_salt(set_value('password'));
 			$email = set_value('email');
 			
@@ -227,9 +230,22 @@ class Auth
 				$data2['msg'] = "The user has now been edited.";
 			}
 			else
-			{
+			{				
+				$this->CI->load->helper('url');
+				
 				$this->CI->db->query("INSERT INTO `$this->user_table` (username, email, password) VALUES ('$username', '$email', '$password')");
-				$data2['msg'] = "The user has now been created.";
+
+				$row_id = $this->CI->db->insert_id();
+				$this->send_add_email($row_id, $username, $uncrypt_password, $email);
+
+				$data2['msg'] = "<p><strong>Thank you for creating your account.</strong></p>
+								<p>You will receive an activation email shortly.&nbsp; Everything you need is contained
+                                in that email. There will be an account activation link in that email plus the user
+                                name and password that you just entered. Thank you for becoming our newest member.</p>
+								<p>Click the Continue button to be taken to our Blog page to read the tips, comments and information.</p>
+								<div style='text-align:center; width:100%'>
+									<input type='button' value='Continue' onclick='javascript:window.location=\"".base_url()."blog\"' />
+								</div>";
 			}
 			
 			if($login === TRUE)
@@ -420,6 +436,52 @@ class Auth
 		$data['page'] = $page;
 		$this->CI->load->view($this->config['auth_views_root'].'index', $data);
 	}
+	
+	function send_add_email($row_id, $username, $password, $email)
+	{
+	
+	$this->CI->load->library('email');
+
+	$bodyMsg = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">\r\n
+	<html xmlns="http://www.w3.org/1999/xhtml">\r\n
+	<head>\r\n
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />\r\n
+	<title>Thank You</title>\r\n
+	</head>\r\n
+	
+	<body>\r\n
+	Thank you for creating an account.
+	<br /><br />
+	Please follow this link to activate:
+	<br /><br />
+	<a href="'.base_url().'activate?ID='.$row_id.'">Activate Your Account</a>
+	<br /><br />
+	UserName: '.$username.'
+	<br /><br />
+	Password: '.$password.'
+	<br /><br />
+	Registered Email: '.$email.'
+	<br />
+	<br />
+	</body>\r\n
+	</html>';
+	
+	$config['mailtype'] = 'html';
+	$this->CI->email->initialize($config);
+	
+	$this->CI->email->from('dr@innstrategy.com', 'Inn Strategy');
+	$this->CI->email->to($email);
+	//$this->email->cc('another@another-example.com'); 
+	$this->CI->email->bcc('dr@innstrategy.com'); 
+	
+	$this->CI->email->subject("Inn Strategy - Account Information");
+	$this->CI->email->message($bodyMsg);
+	
+	$this->CI->email->send();
+
+	}
+
+	
 } // class Auth
 
 ?>
