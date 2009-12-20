@@ -1,0 +1,191 @@
+<?php
+class __TwigTemplate_9f47863d3656728b0f160b57e8d0e311 {
+public function render($context) {
+/* LINE:1 */
+echo "            <div id=\"sidebar\">\n                <form action=\"";
+/* LINE:2 */
+echo twig_get_attribute((isset($context['site']) ? $context['site'] : NULL), "url");
+echo "\" method=\"get\" accept-charset=\"utf-8\">\n                    <fieldset>\n                        <input type=\"hidden\" name=\"action\" value=\"search\" id=\"action\" />\n                        <input type=\"text\" id=\"search\" name=\"query\" value=\"";
+/* LINE:5 */
+echo twig_escape_filter(twig_get_attribute((isset($context['GET']) ? $context['GET'] : NULL), "query"));
+echo "\" />\n                    </fieldset>\n                </form>\n\n                ";
+/* LINE:9 */
+if (twig_get_attribute((isset($context['theme']) ? $context['theme'] : NULL), "pages_list")) {
+echo "\n                <h1>";
+/* LINE:10 */
+echo twig_translate_string_filter("Pages");
+echo "</h1>\n                <ul>\n                    ";
+/* LINE:12 */
+$context['::parent'] = $parent = $context;
+foreach (twig_iterate($context, twig_get_attribute((isset($context['theme']) ? $context['theme'] : NULL), "pages_list")) as $iterator) {
+twig_set_loop_context($context, $iterator, "item");
+echo "\n                    <li>\n                        <a href=\"";
+/* LINE:14 */
+echo twig_get_attribute(twig_get_attribute((isset($context['item']) ? $context['item'] : NULL), "page"), "url");
+echo "\">";
+echo twig_get_attribute(twig_get_attribute((isset($context['item']) ? $context['item'] : NULL), "page"), "title");
+echo "</a>\n\n                        ";
+/* LINE:16 */
+if (twig_get_attribute((isset($context['item']) ? $context['item'] : NULL), "has_children")) {
+echo "<ul>";
+}
+echo "\n                    ";
+/* LINE:17 */
+if ((!twig_get_attribute((isset($context['item']) ? $context['item'] : NULL), "has_children"))) {
+echo "</li>";
+}
+echo "\n                    ";
+/* LINE:18 */
+$context['::parent'] = $parent = $context;
+foreach (twig_iterate($context, twig_get_attribute((isset($context['item']) ? $context['item'] : NULL), "end_tags")) as $iterator) {
+twig_set_loop_context_multitarget($context, $iterator, array("ul", "li"));
+echo "\n                        ";
+/* LINE:19 */
+echo (isset($context['ul']) ? $context['ul'] : NULL);
+echo "\n                    ";
+/* LINE:20 */
+echo (isset($context['li']) ? $context['li'] : NULL);
+echo "\n                    ";
+}
+$context = $context['::parent'];
+/* LINE:21 */
+echo "\n                    ";
+}
+$context = $context['::parent'];
+/* LINE:22 */
+echo "\n                </ul>\n                ";
+}
+/* LINE:24 */
+echo "\n\n                <h1>";
+/* LINE:26 */
+echo sprintf(twig_translate_string_filter("Welcome, %s!"), oneof(twig_get_attribute((isset($context['visitor']) ? $context['visitor'] : NULL), "login"), twig_translate_string_filter("Guest")));
+echo "</h1>\n                <ul>\n                    ";
+/* LINE:28 */
+if (twig_get_attribute((isset($context['visitor']) ? $context['visitor'] : NULL), "logged_in")) {
+echo "\n                    <li><a href=\"";
+/* LINE:29 */
+echo url("controls");
+echo "\">";
+echo twig_translate_string_filter("User Controls");
+echo "</a></li>\n                    ";
+/* LINE:30 */
+if (call_user_func(array(twig_get_attribute((isset($context['visitor']) ? $context['visitor'] : NULL), "group"), "can"), "add_post", "add_page", "view_own_draft", "view_draft", "change_settings")) {
+echo "\n                    <li><a class=\"toggle_admin\" href=\"";
+/* LINE:31 */
+echo url("toggle_admin");
+echo "\">";
+echo twig_translate_string_filter("Toggle Admin Bar");
+echo "</a></li>\n                    ";
+}
+/* LINE:32 */
+echo "\n                    <li><a href=\"";
+/* LINE:33 */
+echo url("logout");
+echo "\">";
+echo twig_translate_string_filter("Log Out");
+echo "</a></li>\n                    ";
+} else {
+/* LINE:34 */
+echo "\n                    <li><a href=\"";
+/* LINE:35 */
+echo url("login");
+echo "\">";
+echo twig_translate_string_filter("Log In");
+echo "</a></li>\n                    ";
+/* LINE:36 */
+if (twig_get_attribute((isset($context['site']) ? $context['site'] : NULL), "can_register")) {
+echo "\n                    <li><a href=\"";
+/* LINE:37 */
+echo url("register");
+echo "\">";
+echo twig_translate_string_filter("Register");
+echo "</a></li>\n                    ";
+}
+/* LINE:38 */
+echo "\n                    <li><a href=\"";
+/* LINE:39 */
+echo url("lost_password");
+echo "\">";
+echo twig_translate_string_filter("Lost Password?");
+echo "</a></li>\n                    ";
+}
+/* LINE:40 */
+echo "\n                </ul>\n\n";
+/* LINE:43 */
+echo call_user_func(array((isset($context['trigger']) ? $context['trigger'] : NULL), "call"), "sidebar");
+echo "\n                ";
+/* LINE:44 */
+if ((isset($context['tags']) ? $context['tags'] : NULL)) {
+echo "\n                <h1>";
+/* LINE:45 */
+echo twig_translate_string_filter("Tags");
+echo "</h1>\n                <ul id=\"tags_list\">\n                    ";
+/* LINE:47 */
+$context['::parent'] = $parent = $context;
+foreach (twig_iterate($context, (isset($context['tags']) ? $context['tags'] : NULL)) as $iterator) {
+twig_set_loop_context($context, $iterator, "tag");
+echo "\n                    <li>\n                        <a href=\"";
+/* LINE:49 */
+echo url(("tag/") . (twig_get_attribute((isset($context['tag']) ? $context['tag'] : NULL), "url")));
+echo "\" title=\"";
+echo sprintf(twig_translate_plural_string_filter("%d post tagged &quot;%s&quot;", "%d posts tagged &quot;%s&quot;", twig_get_attribute((isset($context['tag']) ? $context['tag'] : NULL), "popularity")), twig_get_attribute((isset($context['tag']) ? $context['tag'] : NULL), "popularity"), twig_escape_filter(twig_get_attribute((isset($context['tag']) ? $context['tag'] : NULL), "name")));
+echo "\">";
+echo twig_get_attribute((isset($context['tag']) ? $context['tag'] : NULL), "name");
+echo "</a>\n                        <span class=\"sub\">(";
+/* LINE:50 */
+echo twig_get_attribute((isset($context['tag']) ? $context['tag'] : NULL), "popularity");
+echo ")</span>\n                        ";
+/* LINE:51 */
+if ((twig_get_attribute((isset($context['route']) ? $context['route'] : NULL), "action") == ($tmp1 = "tag")) && ((!substr_count(twig_get_attribute((isset($context['GET']) ? $context['GET'] : NULL), "name"), twig_get_attribute((isset($context['tag']) ? $context['tag'] : NULL), "clean"))))) {
+echo "\n                        <span class=\"sub\">&nbsp;<a href=\"";
+/* LINE:52 */
+echo url(((("tag/") . (twig_get_attribute((isset($context['tag']) ? $context['tag'] : NULL), "url"))) . ("+")) . (twig_urlencode_filter(twig_get_attribute((isset($context['GET']) ? $context['GET'] : NULL), "name"))));
+echo "\">(+)</a></span>\n                        ";
+}
+/* LINE:53 */
+echo "\n                    </li>\n                    ";
+}
+$context = $context['::parent'];
+/* LINE:55 */
+echo "\n                    <li><a href=\"";
+/* LINE:56 */
+echo url("tags");
+echo "\">";
+echo twig_translate_string_filter("All &rarr;");
+echo "</a></li>\n                </ul>\n                ";
+}
+/* LINE:58 */
+echo "\n\n                ";
+/* LINE:60 */
+if (twig_get_attribute((isset($context['theme']) ? $context['theme'] : NULL), "archives_list")) {
+echo "\n                <h1>";
+/* LINE:61 */
+echo twig_translate_string_filter("Archives");
+echo "</h1>\n                <ul>\n                    ";
+/* LINE:63 */
+$context['::parent'] = $parent = $context;
+foreach (twig_iterate($context, twig_get_attribute((isset($context['theme']) ? $context['theme'] : NULL), "archives_list")) as $iterator) {
+twig_set_loop_context($context, $iterator, "archive");
+echo "\n                    <li>\n                        <a href=\"";
+/* LINE:65 */
+echo twig_get_attribute((isset($context['archive']) ? $context['archive'] : NULL), "url");
+echo "\">";
+echo twig_strftime_format_filter(twig_get_attribute((isset($context['archive']) ? $context['archive'] : NULL), "when"), twig_translate_string_filter("%B %Y"));
+echo "</a>\n                        <span class=\"sub\">(";
+/* LINE:66 */
+echo twig_get_attribute((isset($context['archive']) ? $context['archive'] : NULL), "count");
+echo ")</span>\n                    </li>\n                    ";
+}
+$context = $context['::parent'];
+/* LINE:68 */
+echo "\n                    <li><a href=\"";
+/* LINE:69 */
+echo url("archive");
+echo "\">";
+echo twig_translate_string_filter("All &rarr;");
+echo "</a></li>\n                </ul>\n                ";
+}
+/* LINE:71 */
+echo "\n            </div>\n";
+}
+}

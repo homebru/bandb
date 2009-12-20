@@ -1,8 +1,8 @@
 // JavaScript Document
 
-var theForm = document.forms['aspnetForm'];
+var theForm = document.forms['searchForm'];
 if (!theForm) {
-    theForm = document.aspnetForm;
+    theForm = document.searchForm;
 }
 function __doPostBack(eventTarget, eventArgument) {
     if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
@@ -11,7 +11,7 @@ function __doPostBack(eventTarget, eventArgument) {
         theForm.submit();
     }
 }
-
+						   
 function CheckboxTrigger(obj)
 {
         
@@ -25,7 +25,7 @@ function CheckboxTrigger(obj)
          var chkBoxCount= chkBoxList.getElementsByTagName("input");
            for(var i=0;i<chkBoxCount.length;i++)
             { 
-            if (chkBoxCount[i].name != "chkClass$0")  {
+            if (chkBoxCount[i].name != "chkClass_0")  {
             chkBoxCount[i].checked = false;}
             
              if (chkBoxCount[i].checked == true)  
@@ -34,7 +34,7 @@ function CheckboxTrigger(obj)
                     }
              }
         }
-        else if (obj.name == "chkClass$1")
+        else if (obj.name == "chkClass_1")
         {
          var chkBoxList = document.getElementById("chkClass");
          var chkBoxCount= chkBoxList.getElementsByTagName("input");
@@ -56,7 +56,7 @@ function CheckboxTrigger(obj)
     
            for(var i=0;i<chkBoxCount.length;i++)
             { 
-            if (chkBoxCount[i].name == "chkClass$0" || chkBoxCount[i].name == "chkClass$1"  )  {
+            if (chkBoxCount[i].name == "chkClass_0" || chkBoxCount[i].name == "chkClass_1"  )  {
             chkBoxCount[i].checked = false;}
             
               if (chkBoxCount[i].checked == true)  

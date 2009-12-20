@@ -1,0 +1,16 @@
+<?php
+$this->requireTemplate("layouts/default.twig");
+class __TwigTemplate_34519ede353d5b9cf044bffde8e500b3 extends __TwigTemplate_c19a24ba4c4f488924cc287729ac8d39 {
+/* LINE:3 */
+public function block_content($context) {
+$context['::superblock'] = array($this, 'parent::block_content');
+echo "\n        <h1>";
+/* LINE:4 */
+echo twig_translate_string_filter("Not Found");
+echo "</h1>\n        <div class=\"post body\">";
+/* LINE:5 */
+echo twig_translate_string_filter("Sorry, but you are looking for something that isn't here.");
+echo "</div>\n";
+}
+
+}

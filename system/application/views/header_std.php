@@ -6,6 +6,9 @@
 <?php echo link_tag('css/default.css');?>
 <?php echo link_tag('favicon.ico', 'shortcut icon', 'image/ico'); ?>
 
+<?php if(strpos($_SERVER['PHP_SELF'],'search') > -1):?>
+<script src="<?php echo base_url(); ?>scripts/search_scripts.js" type="text/javascript"></script>
+<?php endif; ?>
 <?php if(strpos($_SERVER['PHP_SELF'],'publishers') > -1):?>
 <script src="<?php echo base_url(); ?>scripts/jquery-1.3.2.min.js" type="text/javascript"></script>
 <script type="text/javascript">

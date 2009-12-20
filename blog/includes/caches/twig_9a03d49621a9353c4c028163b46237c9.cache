@@ -1,0 +1,116 @@
+<?php
+class __TwigTemplate_9a03d49621a9353c4c028163b46237c9 {
+public function render($context) {
+/* LINE:1 */
+echo "                    ";
+if (twig_get_attribute((isset($context['post']) ? $context['post'] : NULL), "first_of_day")) {
+echo "\n                    <div class=\"date\">";
+/* LINE:2 */
+echo twig_strftime_format_filter(twig_get_attribute((isset($context['post']) ? $context['post'] : NULL), "created_at"), twig_translate_string_filter("%B %d"));
+echo "</div>\n                    ";
+}
+/* LINE:3 */
+echo "\n                    <div class=\"post ";
+/* LINE:4 */
+echo twig_get_attribute((isset($context['post']) ? $context['post'] : NULL), "feather");
+if (twig_get_attribute((isset($context['post']) ? $context['post'] : NULL), "pinned")) {
+echo " pinned";
+}
+echo "\" id=\"post_";
+echo twig_get_attribute((isset($context['post']) ? $context['post'] : NULL), "id");
+echo "\">\n                        ";
+/* LINE:5 */
+if (twig_get_attribute((isset($context['post']) ? $context['post'] : NULL), "pinned")) {
+echo "<span class=\"pinned_text\">";
+echo twig_translate_string_filter("!");
+echo "</span>";
+}
+echo "\n                        ";
+/* LINE:6 */
+$this->block_content($context);
+echo "\n                        ";
+/* LINE:7 */
+if (((twig_get_attribute((isset($context['route']) ? $context['route'] : NULL), "action") == ($tmp1 = "view")) && (twig_get_attribute((isset($context['post']) ? $context['post'] : NULL), "paginated"))) && (twig_get_attribute(twig_get_attribute((isset($context['post']) ? $context['post'] : NULL), "paginated"), "pages") > ($tmp1 = 1))) {
+echo "\n                        <div class=\"clear\"></div>\n                        ";
+/* LINE:9 */
+echo twig_get_attribute(twig_get_attribute((isset($context['post']) ? $context['post'] : NULL), "paginated"), "prev_link");
+echo "\n                        ";
+/* LINE:10 */
+echo twig_get_attribute(twig_get_attribute((isset($context['post']) ? $context['post'] : NULL), "paginated"), "next_link");
+echo "\n                        <span class=\"pages\">";
+/* LINE:11 */
+echo sprintf(twig_translate_string_filter("Page %d of %d"), twig_get_attribute(twig_get_attribute((isset($context['post']) ? $context['post'] : NULL), "paginated"), "page"), twig_get_attribute(twig_get_attribute((isset($context['post']) ? $context['post'] : NULL), "paginated"), "pages"));
+echo "</span>\n                        ";
+}
+/* LINE:12 */
+echo "\n                        <div class=\"clear\"></div>\n                        <span class=\"info\">\n                            ";
+/* LINE:15 */
+if (twig_get_attribute((isset($context['post']) ? $context['post'] : NULL), "pinned")) {
+echo "\n                            <strong><a href=\"";
+/* LINE:16 */
+echo twig_get_attribute((isset($context['post']) ? $context['post'] : NULL), "url");
+echo "\">";
+echo twig_strftime_format_filter(twig_get_attribute((isset($context['post']) ? $context['post'] : NULL), "created_at"), twig_translate_string_filter("%B %e @ %I:%M %p"));
+echo "</a></strong>\n                            ";
+} else {
+/* LINE:17 */
+echo "\n                            <strong><a href=\"";
+/* LINE:18 */
+echo twig_get_attribute((isset($context['post']) ? $context['post'] : NULL), "url");
+echo "\">";
+echo twig_strftime_format_filter(twig_get_attribute((isset($context['post']) ? $context['post'] : NULL), "created_at"), twig_translate_string_filter("%I:%M %p"));
+echo "</a></strong>\n                            ";
+}
+/* LINE:19 */
+echo "\n                            ";
+/* LINE:20 */
+if ((twig_get_attribute((isset($context['enabled_modules']) ? $context['enabled_modules'] : NULL), "categorize")) && (twig_get_attribute(twig_get_attribute((isset($context['post']) ? $context['post'] : NULL), "category"), "id") != ($tmp1 = 0))) {
+echo "\n                            |\n                            <a href=\"";
+/* LINE:22 */
+echo twig_get_attribute(twig_get_attribute((isset($context['post']) ? $context['post'] : NULL), "category"), "url");
+echo "\" rel=\"tag\">";
+echo twig_get_attribute(twig_get_attribute((isset($context['post']) ? $context['post'] : NULL), "category"), "name");
+echo "</a>\n                            ";
+}
+/* LINE:23 */
+echo "\n                            ";
+/* LINE:24 */
+if (twig_get_attribute((isset($context['enabled_modules']) ? $context['enabled_modules'] : NULL), "comments")) {
+echo "\n                            |\n                            <a href=\"";
+/* LINE:26 */
+echo twig_get_attribute((isset($context['post']) ? $context['post'] : NULL), "url");
+echo "#comments\">";
+echo sprintf(twig_translate_plural_string_filter("%s Comment", "%s Comments", twig_get_attribute((isset($context['post']) ? $context['post'] : NULL), "comment_count")), twig_get_attribute((isset($context['post']) ? $context['post'] : NULL), "comment_count"));
+echo "</a>\n                            ";
+}
+/* LINE:27 */
+echo "\n                            ";
+/* LINE:28 */
+if (twig_length_filter(twig_get_attribute((isset($context['post']) ? $context['post'] : NULL), "linked_tags")) > ($tmp1 = 0)) {
+echo "\n                            |\n                            ";
+/* LINE:30 */
+echo twig_translate_string_filter("Tags");
+echo ": ";
+echo twig_join_filter(twig_get_attribute((isset($context['post']) ? $context['post'] : NULL), "linked_tags"), ", ");
+echo "\n                            ";
+}
+/* LINE:31 */
+echo "\n                        </span>\n                        ";
+/* LINE:33 */
+if ((twig_get_attribute((isset($context['post']) ? $context['post'] : NULL), "editable")) || (twig_get_attribute((isset($context['post']) ? $context['post'] : NULL), "deletable"))) {
+echo "\n                        <span class=\"controls\">\n                            ";
+/* LINE:35 */
+echo twig_get_attribute((isset($context['post']) ? $context['post'] : NULL), "edit_link");
+echo "\n                            ";
+/* LINE:36 */
+echo call_user_func(array((isset($context['post']) ? $context['post'] : NULL), "delete_link"), twig_translate_string_filter("Delete"), " | ");
+echo "\n                        </span>\n                        ";
+}
+/* LINE:38 */
+echo "\n                        <div class=\"clear\"></div>\n                    </div>\n";
+}
+/* LINE:6 */
+public function block_content($context) {
+}
+
+}
