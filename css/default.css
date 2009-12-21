@@ -281,8 +281,13 @@ tr.datacelltwo
     padding-right: 10px;
     padding-left: 10px;
     padding-top: 10px;
-    
-    
+}
+.main
+{
+    padding: 5px;
+    background-color:White;
+    border: solid 1px #222;
+  /*  border-left: 48px #25374a solid;*/
 }
 
 
@@ -500,7 +505,13 @@ Layout Divs
 	
 }
 
-
+.TopLabel{
+	font-weight: bold; 
+	font-size: 8pt; 
+	color: black; 
+	font-family: Verdana, Arial, Helvetica, sans-serif; 
+	text-decoration: none;
+}
 
 /******************
 MENU ITEMS
@@ -602,3 +613,4 @@ textarea
 	color:#990000;
 	font-weight:normal;
 }
+

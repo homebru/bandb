@@ -1,0 +1,178 @@
+﻿
+
+.right
+{
+    border: solid 1px #222;
+    width: 400px;
+    background-color: White;
+    float: right;
+    padding: 5px;
+}
+.main
+{
+    position: absolute;
+    left:400px;
+    padding: 5px;
+    background-color:White;
+    border: solid 1px #222;
+    border-left: 48px #25374a solid;
+}
+.menu
+{
+    min-width :945px;
+    height :25px;
+    background-color: #6d8497;
+     
+}
+.YesNo
+{
+    font-size: 8pt;
+    color: #009900;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    text-decoration: none;
+   }
+.sidemenu
+{
+    min-width :945px;
+    height :20px;
+    background-color: #FFFFFF;
+     
+}
+.content
+{
+  
+    padding: 5px;
+     
+}
+.state
+{
+    width: 200px;
+    background-color: green;
+}
+.fmlabel
+{
+	font-family:Verdana;
+	font-size:12px;
+	font-weight:normal;
+	color:black;	
+}
+body
+{
+    margin: 10px;
+    font: 0.7em Verdana,Arial,Helvetica,sans-serif;
+    background: #ffffff url(Images/bg.gif) repeat-x;
+    width:100%
+}
+.infotable {
+	border: solid #4674b0 1px;
+	background-color: #ebf0f6;
+}
+#login a:link, #login a:visited {
+	color: #FFFFFF;
+}
+#title h1 a:link, #title h1 a:visited {
+	color: #FFFFFF;
+	text-decoration: none;
+}
+#reportresults h2 {
+	font-size: 1.1em;
+	font-weight: bold;
+}
+a:link {
+	color: #396EAA;
+}
+a:visited {
+	color: #396EAA;
+}
+a:hover {
+	text-decoration: none;
+}
+a:active {
+	text-decoration: none;
+}
+#search
+{
+    padding: 10px;
+    border: 1px solid #000000;
+    background: #DAE1E7 url(../images/background.jpg) repeat-x left top;
+    color: #666666;
+    font-family: Tahoma,Verdana,Helvetica,Helvetica-Narrow,sans-serif;
+        position: relative;
+} fieldset {
+	margin-bottom: 0px;
+	padding: 4px 4px 4px 4px;
+	display: block;
+	
+}
+.texta {
+font-size: 8pt; 
+font-family: Verdana, Tahoma, Arial
+
+}
+.inputtextbox
+{
+    width: 80px;
+}
+
+.submit, .reset, .delete, .create, .add, .copy {
+	margin-top: 4px;
+	margin-bottom: 4px;
+	font-size: 0.9em;
+	height: 28px;
+}
+/* make submit button larger */
+.submit {
+	width: 108px;
+}
+.TopNavLink {
+	FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #ececec; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; TEXT-DECORATION: none
+}
+A.TopNavLink:link {
+	FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #ececec; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; TEXT-DECORATION: none
+}
+A.TopNavLink:visited {
+	FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #ececec; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; TEXT-DECORATION: none
+}
+A.TopNavLink:hover {
+	FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #ececec; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; TEXT-DECORATION: none
+}
+A.TopNavLink:active {
+	FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: #ececec; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; TEXT-DECORATION: none
+}
+
+.TopLabel{
+	FONT-WEIGHT: bold; FONT-SIZE: 8pt; COLOR: black; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; TEXT-DECORATION: none
+}
+	
+	
+.SideNavLink {
+	FONT-WEIGHT: bold;
+	color: #284775;
+    font-family: Tahoma,Verdana,Helvetica,Helvetica-Narrow,sans-serif; TEXT-DECORATION: none
+}
+A.SideNavLink:link {
+	FONT-WEIGHT: bold;
+	color: #284775;
+    font-family: Tahoma,Verdana,Helvetica,Helvetica-Narrow,sans-serif; TEXT-DECORATION: none
+    
+}
+A.SideNavLink:visited {
+	FONT-WEIGHT: bold;
+	color: #284775;
+    font-family: Tahoma,Verdana,Helvetica,Helvetica-Narrow,sans-serif; TEXT-DECORATION: none
+}
+A.SideNavLink:hover {
+	FONT-WEIGHT: bold;
+	color: orange;
+    font-family: Tahoma,Verdana,Helvetica,Helvetica-Narrow,sans-serif; TEXT-DECORATION: none
+}
+A.SideNavLink:active {
+	FONT-WEIGHT: bold;
+	color: #284775;
+    font-family: Tahoma,Verdana,Helvetica,Helvetica-Narrow,sans-serif; TEXT-DECORATION: none
+}
+
+.SideLabel{
+FONT-WEIGHT: bold;	FONT-SIZE: 0.7em ; COLOR: black; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; TEXT-DECORATION: none
+}
+

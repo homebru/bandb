@@ -25,5 +25,5 @@ class Login extends Controller {
 	}
 }
 
-/* End of file pricing.php */
-/* Location: ./system/application/controllers/pricing.php */
+/* End of file login.php */
+/* Location: ./system/application/controllers/login.php */

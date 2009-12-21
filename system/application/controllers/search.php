@@ -74,6 +74,7 @@ class Search extends Application {
 		$LinkPR = '';
 		$BBCategory = isset($_POST['rblBBCategory']) ? $_POST['rblBBCategory'] : '';
 		$LinkType = '';
+		$my_list = !($this->uri->segment(2) === FALSE);
 		
 		$query = $this->client_data_search($Website, $Classification, $PriceType, $BBSpecials, $UserReview, $Google, $Yahoo, $MSN, $Quantified, $VacationRental, $Rating, $Limited, $UserName, $LinkPR, $BBCategory, $LinkType, $sort_column, $sort_direction);
 		$data['bbdata'] = $query->result_array();
@@ -85,8 +86,8 @@ class Search extends Application {
 		$this->load->helper('form');
 		$this->load->library('ajax');
 		
-		$this->load->view('header_std');
-		$this->load->view('search', $data);
+		$this->load->view('header_user');
+		$this->load->view($my_list ? 'my_list' : 'search', $data);
 		$this->load->view('footer_std');
 		
 	}
@@ -162,6 +163,23 @@ class Search extends Application {
 		return $cb_list;
 	}
 	
+	function client_my_list_search($UserName)
+	{
+		return ($this->db->query (  'SELECT BBData.BBDataId, BBData.WebsiteText, BBData.Website, BBData.Rating, ClientBBData.DateExpires, ClientBBData.Price, BBData.UserReview, 
+                      				BBData.BBListSpecials, BBData.LinkPR, ClientBBData.UserID, Classification.ClassficationID, Classification.ClassficationText AS Classification, 
+                      				PriceType.PriceTypeText AS PriceType
+									FROM BBData 
+									LEFT OUTER JOIN
+				                      ClientBBData ON BBData.BBDataId = ClientBBData.BBDataID 
+									LEFT OUTER JOIN
+                				      PriceType ON BBData.PriceType = PriceType.PriceID 
+									LEFT OUTER JOIN
+				                      Classification ON BBData.Classification = Classification.ClassficationID
+									WHERE (ClientBBData.UserID = \'' . $UserName . '\') AND ()
+									ORDER BY BBData.WebsiteText'));
+		
+	}
+	
 	function client_data_search($Website, $Classification, $PriceType, $BBSpecials, $UserReview, $Google, $Yahoo, $MSN, $Quantified, $VacationRental, $Rating, $Limited, $UserName, $LinkPR, $BBCategory, $LinkType, $sort_column, $sort_direction)
 	{
 		if($Limited !== '') {
@@ -223,17 +241,14 @@ class Search extends Application {
 					Classification ON BBData.Classification = Classification.ClassficationID 	
 					INNER JOIN
 					ClientStates ON StatesServed.StateServed =
-						  (SELECT     ClientStates.StateCode FROM ClientStates
-							WHERE      (ClientStates.UserID = \'' . $UserName . '\') LIMIT 1, 1) LEFT OUTER JOIN
+						       ClientStates.StateCode 
+							AND      (ClientStates.UserID = \'' . $UserName . '\') LEFT OUTER JOIN
 					ClientBBData ON BBData.BBDataId =
-						  (SELECT     ClientBBData.BBDataID FROM ClientBBData
-							WHERE      (ClientBBData.UserID = \'' . $UserName . '\') LIMIT 0, 1) 
+						       ClientBBData.BBDataID 
+							AND      (ClientBBData.UserID = \'' . $UserName . '\')
 						  
 					WHERE (BBData.Enabled = 1)';
 
-			if($Website !== '') {  
-				$sql .= ' AND WebsiteText LIKE \'' . $Website . '%\'';
-			} else {
 					if($LinkPR !== '') {
 						$sql .= ' AND COALESCE(LinkPR,0) IN (' . $LinkPR . ')';
 					}		
@@ -282,7 +297,7 @@ class Search extends Application {
 						}
 					}
 					
-					if($Website === '') {  //Why is Website being checked here?  We aleady know website is blank
+					if($Website === '') { 
 						if($Classification !== '') {    
 							if($Classification <> 'Blank') {
 								$sql .= ' AND Classification  IN (' . $Classification . ')';
@@ -291,159 +306,27 @@ class Search extends Application {
 							}
 						}
 					}
-				
+					else
+					{
+						$sql .= ' AND WebsiteText LIKE \'' . $Website . '%\'';
+					}
+
 					if($Rating !== '') {
 						$sql .= ' AND COALESCE(Rating,-1) IN (' . $Rating . ')';
 					}	
 			}	
-			
-			$sql .= ' ORDER BY ';
-			
-//			if($this->config->item('sort_column') !== '')
-				$sql .= $sort_column . ' ' . $sort_direction . ', ';
+							
+			$sql .= ' ORDER BY ' . $sort_column . ' ' . $sort_direction . ', ';
 			
 			if($Limited !== '') {
 				$sql .= 'c.ClassficationText ASC';
 			} else {
 				$sql .= 'WebSiteText ASC';
 			}
-		}
 //print($sql);
-
 		return ($this->db->query ($sql));
 	}
-
-	function client_select_many($Website, $Classification, $PriceType, $BBSpecials, $UserReview, $Google, $Yahoo, $MSN, $Quantified, $Rating, $State, $LinkType, $AdPackage, $BBCategory, $MaxPR, $LinkPR, $Limited)
-	{
-
-		if($Limited !== '')
-		{
-			$sql = 'SELECT DISTINCT TOP ' . $Limited;
-		} else {
-			$sql = 'SELECT DISTINCT';
-		}
-
-		$sql .= ' BBData.BBDataID, BBData.LastUpdated, BBData.QuantcastCurrent, BBData.QuantcastChange, BBData.CompeteCurrent, 
-				BBData.CompeteChange, BBData.Rating, BBData.WebSiteText, BBData.WebSite, Classification.ClassficationText, BBData.Score, 
-				BBData.Price, BBData.BBCategory, BBData.LinkPR, BBData.MaxPR, LinkType.LinkTypeText as LinkType, AdPackage.AdPackageText as AdPackage, 
-				BBData.Quantified, BBData.IndexByYahoo, BBData.IndexByMSN, BBData.IndexByGoogle, PriceType.PriceTypeText AS PriceType
-				FROM BBData 
-				LEFT OUTER JOIN Classification ON BBData.Classification = Classification.ClassficationID 
-				LEFT OUTER JOIN LinkType ON BBData.LinkType= LinkType.LinkTypeID 
-				LEFT OUTER JOIN PriceType ON BBData.PriceType = PriceType.PriceID 
-				LEFT OUTER JOIN AdPackage ON BBData.AdPackage= AdPackage.AdPackageID 
-				LEFT OUTER JOIN StatesServed ON BBData.BBDataId = StatesServed.BBDataId
-				WHERE (BBData.Enabled = 1)';
-
-		if($Rating !== '')
-		{
-			$sql .= ' AND COALESCE(BBData.Rating,-1) IN (' . $Rating . ')';
-		}		
 		
-		
-		if($LinkPR !== '')
-		{
-			$sql .= ' AND COALESCE(BBData.LinkPR,0) IN (' . $LinkPR . ')';
-		}		
-		
-	
-		if($MaxPR !== '')
-		{
-			$sql .= ' AND COALESCE(BBData.MaxPR,0) IN (' . $MaxPR . ')';
-		}		
-		
-		if($Quantified !== '')                                          
-		{
-			$sql .= ' AND BBData.Quantified LIKE \'' . $Quantified . '%\'';
-		}
-
-		if($BBSpecials !== '')
-		{
-			$sql .= ' AND BBData.BBListSpecials LIKE \'' . $BBSpecials . '%\'';
-		}
-		
-		if($Yahoo !== '')
-		{
-			$sql .= ' AND BBData.IndexByYahoo LIKE \'' . $Yahoo . '%\'';
-		}
-		
-	
-		if($BBCategory !== '')
-		{
-			$sql .= ' AND BBData.BBCategory = ' . $BBCategory . '';
-		}
-		
-		if($MSN !== '')
-		{
-			$sql .= ' AND BBData.IndexByMSN LIKE \'' . $MSN . '%\'';
-		}
-		
-		if($Google !== '') 
-		{
-			$sql .= ' AND BBData.IndexByGoogle LIKE \'' . $Google . '%\'';
-		}
-		
-		if($UserReview !== '')
-		{
-			$sql .= ' AND BBData.UserReview LIKE \'' . $UserReview . '%\'';
-		}
-		
-		if($PriceType !== '')     
-		{
-			if($PriceType !== 'Blank')
-			{
-				$sql .= ' AND BBData.PriceType LIKE \'' . $PriceType . '%\'';
-			} else {
-				$sql .= ' AND BBData.PriceType IS NULL';
-			}
-		}
-
-		if($LinkType !== '')     
-		{
-			$sql .= ' AND BBData.LinkType = ' . $LinkType . '';
-		}
-
-		if($AdPackage !== '')     
-		{
-			$sql .= ' AND BBData.AdPackage = ' . $AdPackage . '';
-		}
-		
-		if($Website === '')
-		{
-			if($Classification !== '')    
-			{
-				if($Classification !== 'Blank')
-				{
-					$sql .= ' AND BBData.Classification IN (' . $Classification . ')';
-				} else {
-					$sql .= ' AND BBData.Classification IS NULL';
-				}
-			 }
-	
-			if($State !== '')
-			{
-				if($State !== 'Blank')
-				{
-					$sql .= ' AND BBData.BBDataId IN(SELECT DISTINCT BBDataID FROM StatesServed WHERE StatesServed.StateServed LIKE \'' . $State . '\')';
-				} else {
-					$sql .= ' AND BBData.BBDataId NOT IN(SELECT DISTINCT BBDataID FROM StatesServed WHERE NOT StateServed IS NULL )';
-				}
-			}
-		}
-
-		if($Website !== '')  
-		{
-			$sql .= ' AND BBData.WebsiteText LIKE \'' . $Website . '%\'';
-		}
-		
-		$sql .= ' ORDER BY BBData.LastUpdated Desc';
-		
-//print $sql;
-			
-		return ($this->db->query ($sql));
-
-	}
-	
 }
 
 /* End of file search.php */

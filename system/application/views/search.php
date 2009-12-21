@@ -111,7 +111,7 @@
 		<?php $row_num = 0; ?>
 		<?php foreach($bbdata as $row): ?>
 		<tr style="color:#333333; background-color:#<?php echo (($row_num % 2) == 0) ? 'F7F6F3' : 'FFFFFF' ?>;">
-			<td align="left" style="width:140px;"><a href="DetailPage/<?php echo $row['BBDataID'] ?>"><?php echo $row['WebSiteText'] ?></a></td>
+			<td align="left" style="width:140px;"><a href="<?php echo base_url() ?>detail/<?php echo $row['BBDataID'] ?>"><?php echo $row['WebSiteText'] ?></a></td>
 			<td align="left" style="width:80px;"><span id="gvResult_ctl02_imgButton"><?php for($i=0; $i<$row['Rating']; $i++) { echo "<IMG src='". base_url() ."images/star_active.gif'>"; } ?></span></td>
 			<td align="left"><?php echo $row['ClassficationText'] ?></td>
 			<td align="left" style="width:80px;"><?php echo $row['Price'] ?></td>
@@ -120,7 +120,7 @@
 			<td align="center" style="width:120px;"><?php echo $row['UserReview'] ?></td>
 			<td align="center"><?php echo $row['VacationRental'] == 0 ? 'No' : 'Yes' ?></td>
 			<td align="center">
-				<?php if($row['Checked'] == 1) { ?>
+				<?php if($row['Checked'] != 0) { ?>
 					<a onclick="return confirm('Are you sure you want to remove this item?');" id="ctl00_ContentPlaceHolder1_gvResult_ctl10_LnkButton" class="YesNo" BBDataID="<?php echo $row['BBDataID'] ?>" BBDataUID="312" State="CANCEL" href="javascript:__doPostBack('ctl00$ContentPlaceHolder1$gvResult$ctl10$LnkButton','')" style="color:Black;">Done</a>
 				<?php } else { ?>
 					<a id="gvResult_ctl02_LnkButton" class="YesNo" BBDataID="<?php echo $row['BBDataID'] ?>" State="ADD" href="javascript:__doPostBack('gvResult$ctl02$LnkButton','')" style="color:Green;">Yes</a>

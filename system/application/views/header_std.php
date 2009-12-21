@@ -244,8 +244,12 @@ function validate_url(value)
 
 <body>
 	<div class="holder2" style="font-size: 8pt; font-family: Tahoma">
-		<div class="top">
+		<div class="top" style="width:100%; margin-bottom:10px;">
+			<div style="text-align: right; padding-right: 30px; padding-top:15px;">
+				<span id="lblDateStamp" class="TopLabel" style="color:LightGrey;"><?php echo date("l, F j, Y"); ?></span>
+			</div>
 		</div>
+		<br style="clear:both;" />
 	   
 			
 		<div class="gds">
@@ -258,7 +262,6 @@ function validate_url(value)
 									
 									<li class="archive">
 										<a id="MyMenu_HyperLink1" class="archive" href="home">Home</a></li>
-									
 									<li class="contact">
 										<a id="MyMenu_lnkmenu4" class="contact" href="glossary">Glossary</a></li>
 									<li class="archive">

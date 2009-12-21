@@ -50,6 +50,11 @@ $route['register'] = "admin/admin/register";
 $route['admin/dashboard'] = "admin/admin/index";
 // END AUTHENTICATION LIBRARY ROUTES
 
+$route['search/my'] = "search";
+
+$route['detail/(:num)'] = "detail/show/$1";
+
+$route['profile'] = "profile/edit";
 
 /* End of file routes.php */
 /* Location: ./system/application/config/routes.php */
