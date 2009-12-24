@@ -124,10 +124,10 @@ class Publishers extends Controller {
 		$config['mailtype'] = 'html';
 		$this->email->initialize($config);
 		
-		$this->email->from('dr@innstrategy.com', 'Inn Strategy');
+		$this->email->from($this->config->item('email_from'), 'Inn Strategy');
 		$this->email->to($txtEmail);
 		//$this->email->cc('another@another-example.com'); 
-		$this->email->bcc('dr@innstrategy.com'); 
+		$this->email->bcc($this->config->item('email_from')); 
 		
 		$this->email->subject("Inn Strategy - $txtWebsite is now added!");
 		$this->email->message($bodyMsg);
@@ -136,7 +136,7 @@ class Publishers extends Controller {
 
 	}
 	
-	function validUrl($host, $page =‘/’, $port=80) 
+	function validUrl($host, $page ='/', $port=80) 
 	{
 	//server connection
 	$fp= fsockopen($host,$port,$errno, $errstr, 30);
@@ -152,7 +152,7 @@ class Publishers extends Controller {
 		$ret=fgets($fp);
  
 		//see if we got an 200 OK status
-		if (ereg(‘200 OK’,$ret)) {
+		if (ereg('200 OK',$ret)) {
 			fclose($fp);
 			return true;
 		}

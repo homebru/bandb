@@ -1,10 +1,12 @@
 <?php
 
-class Profile extends Controller {
+class Profile extends Application {
 
 	function Profile()
 	{
-		parent::Controller();	
+		parent::Application();	
+		if($this->uri->segment(2) !== 'demo')
+			$this->auth->restrict('user');
 	}
 	
 	function index()
@@ -32,7 +34,7 @@ class Profile extends Controller {
 						'page_title' => 'Inn Strategy - Search',
 					);
 		
-		$UserID = '13baaeb6-1bba-4bad-8893-3f0bca64e274';
+		$UserID = userID();	//'13baaeb6-1bba-4bad-8893-3f0bca64e274';
 		$query = $this->get_ClientProfile_SelectOne($UserID);
 		$data['client'] = $query->row();
 

@@ -2,7 +2,7 @@
 		<div>
 
 		<div style="height: 30px; padding-top: 15px;">
-			&nbsp;&nbsp; <strong>Hi</strong>&nbsp;<span id="LoginName" style="font-weight:bold;"><?php //echo username(); ?></span>
+			&nbsp;&nbsp; <strong>Hi</strong>&nbsp;<span id="LoginName" style="font-weight:bold;"><?php echo username(); ?></span>
 		</div>
 		<fieldset>
 			<legend>My Advertising Sites</legend>

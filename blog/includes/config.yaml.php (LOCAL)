@@ -2,15 +2,15 @@
 ---
 sql: 
   host: "localhost"
-  username: "bodhilog_bandb"
-  password: "bandb"
-  database: "bodhilog_bandb"
+  username: "root"
+  password: "root"
+  database: "bodhi_bandb"
   prefix: "chyrp_"
   adapter: "mysql"
 name: "Inn Strategy Blog"
 description: 
-url: "http://bandb.bodhilogic.com/blog"
-chyrp_url: "http://bandb.bodhilogic.com/blog"
+url: "http://localhost/bandb/blog"
+chyrp_url: "http://localhost/bandb/blog"
 feed_url: 
 email: "bodhilogic@gmail.com"
 locale: "en_US"

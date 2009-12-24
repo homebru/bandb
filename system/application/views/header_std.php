@@ -70,7 +70,7 @@ $(document).ready(function(){
 		}
 		
 		if(validate_url('http://www.'+searchToVal) == false) {
-			$("#txtSearch").after('<span class="error">Your entry does not appear to be a valid web URL. If we are incorrect please <a href="mailto:dr@innstrategy.com?subject=Invalid URL - "+searchToVal+">let us know</a>.</span>');
+			$("#txtSearch").after('<span class="error">Your entry does not appear to be a valid web URL. If we are incorrect please <a href="mailto:<?= $this->config->item('email_from'); ?>?subject=Invalid URL - ' + $("#txtSearch").val() + '">let us know</a>.</span>');
 			hasError = true;
 		}
 		
@@ -261,7 +261,7 @@ function validate_url(value)
 								<ul>
 									
 									<li class="archive">
-										<a id="MyMenu_HyperLink1" class="archive" href="home">Home</a></li>
+										<a id="MyMenu_HyperLink1" class="archive" href="<?php echo base_url(); ?>">Home</a></li>
 									<li class="contact">
 										<a id="MyMenu_lnkmenu4" class="contact" href="glossary">Glossary</a></li>
 									<li class="archive">

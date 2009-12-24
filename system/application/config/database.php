@@ -37,19 +37,36 @@
 $active_group = "default";
 $active_record = TRUE;
 
-$db['default']['hostname'] = "localhost";
-$db['default']['username'] = "root";
-$db['default']['password'] = "root";
-$db['default']['database'] = "bodhi_bandb";
-$db['default']['dbdriver'] = "mysql";
-$db['default']['dbprefix'] = "";
-$db['default']['pconnect'] = TRUE;
-$db['default']['db_debug'] = TRUE;
-$db['default']['cache_on'] = FALSE;
-$db['default']['cachedir'] = "";
-$db['default']['char_set'] = "utf8";
-$db['default']['dbcollat'] = "utf8_general_ci";
-
+if (stristr($_SERVER['HTTP_HOST'], 'local') || (substr($_SERVER['HTTP_HOST'], 0, 07) == '192.168')) 
+{
+	$db['default']['hostname'] = "localhost";
+	$db['default']['username'] = "root";
+	$db['default']['password'] = "root";
+	$db['default']['database'] = "bodhi_bandb";
+	$db['default']['dbdriver'] = "mysql";
+	$db['default']['dbprefix'] = "";
+	$db['default']['pconnect'] = TRUE;
+	$db['default']['db_debug'] = TRUE;
+	$db['default']['cache_on'] = FALSE;
+	$db['default']['cachedir'] = "";
+	$db['default']['char_set'] = "utf8";
+	$db['default']['dbcollat'] = "utf8_general_ci";
+}
+else
+{
+	$db['default']['hostname'] = "localhost";
+	$db['default']['username'] = "bodhilog_bandb";
+	$db['default']['password'] = "bandb";
+	$db['default']['database'] = "bodhilog_bandb";
+	$db['default']['dbdriver'] = "mysql";
+	$db['default']['dbprefix'] = "";
+	$db['default']['pconnect'] = TRUE;
+	$db['default']['db_debug'] = TRUE;
+	$db['default']['cache_on'] = FALSE;
+	$db['default']['cachedir'] = "";
+	$db['default']['char_set'] = "utf8";
+	$db['default']['dbcollat'] = "utf8_general_ci";
+}
 
 /* End of file database.php */
 /* Location: ./system/application/config/database.php */

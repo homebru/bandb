@@ -4,7 +4,7 @@
                 <br />
                 <span style="color:#F00;">Please enter your website name (e.g.  bedandbreakfast.com)</span>
                 <br />
-				<form id="find_form" action="<?=base_url()?>index.php/publishers/find" method="post">
+				<form id="find_form" action="<?=base_url()?>index.php/publishers" method="post">
 				<?php //echo form_open('publishers/find');?>
                 Search Here <span style="color:#666;">www</span>.
                 <?php $data = array(
@@ -15,7 +15,7 @@
 						);
 				$attributes = array('id' => 'myform');?>
 				<input type="text" id="txtSearch" name="txtSearch" size="25" />
-                <button id="search" name="search">Search</button>
+                <input type="submit" id="search" name="search" value="Search" />
 				<?php echo form_close('<br />');?>
 
 				<div id="View2" style="display:none;">

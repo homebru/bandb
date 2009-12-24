@@ -167,11 +167,11 @@ function confApprove(id, imageButton)
 							<div id="user_menu" class="menuGeneric">
 								<ul>
 									<li class="archive">
-										<a id="MyMenu_HyperLink1" class="archive" href="<?php echo base_url(); ?>search/my">My List</a></li>
+										<a id="MyMenu_HyperLink1" class="archive" href="<?php echo base_url(); ?>search<?php echo ($this->uri->segment(2) === 'demo') ? '/demo' : ''; ?>/my">My List</a></li>
 									<li class="archive">
-										<a id="MyMenu_HyperLink5" class="archive" href="<?php echo base_url(); ?>search">Travel Database</a></li>
+										<a id="MyMenu_HyperLink5" class="archive" href="<?php echo base_url(); ?>search<?php echo ($this->uri->segment(2) === 'demo') ? '/demo' : ''; ?>">Travel Database</a></li>
 								 	<li class="archive">
-										<a id="MyMenu_HyperLink6" class="archive" href="<?php echo base_url(); ?>profile">My Account</a></li>        
+										<a id="MyMenu_HyperLink6" class="archive" href="<?php echo base_url(); ?>profile<?php echo ($this->uri->segment(2) === 'demo') ? '/demo' : ''; ?>">My Account</a></li>        
 									<li class="archive">
 										<a id="MyMenu_HyperLink2" class="archive" href="<?php echo base_url(); ?>glossary">Intro</a></li>
 									<li class="archive">
@@ -182,8 +182,10 @@ function confApprove(id, imageButton)
 										<a id="MyMenu_HyperLink7" class="archive" href="<?php echo base_url(); ?>gds">GDS</a></li>
 									<li class="archive">
 										<a id="MyMenu_HyperLink4" class="archive" href="<?php echo base_url(); ?>blog">Blog</a></li>
+									<?php if($this->uri->segment(2) !== 'demo'): ?>
 									<li class="archive">
 										<a id="MyMenu_LoginStatus3" class="archive" href="<?php echo base_url(); ?>logout">Logout</a></li>
+									<?php endif; ?>
 								</ul>
 							</div>
 						</td>

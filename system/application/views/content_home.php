@@ -77,16 +77,18 @@
                                 <?php foreach($query4->result_array() as $row):?>
 								<?php $img = '';
 										$rating = $row['Rating'];
-										If($rating == 0)
+										If(($rating == 0) && !is_null($rating))
 											$img = img('images/star-o.gif');
 										else
 										{
-											if($rating === "") 
-												$img = img('images/nr.gif');
-											else
+											if($rating > 0)
 											{
 												for($i=1; $i<=$rating; $i++)
 													$img .= img('images/star.gif').'&nbsp;';
+											}
+											else
+											{
+												$img = img('images/nr.gif');
 											}
 										}
 								?>
@@ -102,8 +104,8 @@
                              </table>
                         </div>
                         <div class="rating">
-                          4 Stars is our highest rating.  An asterisk <?php img('images/star-o.gif'); ?> indicates PPC or commission and&nbsp;
-                            <?php img('images/nr.gif'); ?>&nbsp; means &ldquo;Not Rated.&rdquo;
+                          4 Stars is our highest rating.  An asterisk <?= img('images/star-o.gif'); ?> indicates PPC or commission and&nbsp;
+                            <?= img('images/nr.gif'); ?>&nbsp; means &ldquo;Not Rated.&rdquo;
 						</div>
                         <br />
                         <div class="clear">

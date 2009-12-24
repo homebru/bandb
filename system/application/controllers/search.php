@@ -4,7 +4,9 @@ class Search extends Application {
 		
 	function Search()
 	{
-		parent::Controller();
+		parent::Application();
+		if($this->uri->segment(2) !== 'demo')
+			$this->auth->restrict('user');
 	}
 	
 	function index()
@@ -21,6 +23,9 @@ class Search extends Application {
 
 		$query = $this->get_price_type();
 		$data['price_type'] = $query->result_array();
+		
+		if($this->uri->segment(2) === 'demo')
+			set_userID('b2cd1871-34e4-4472-a004-1d6dccb0f0a2');
 
 /*
 		$Website = '';
@@ -69,16 +74,18 @@ class Search extends Application {
 		$Quantified = '';
 		$VacationRental = isset($_POST['rblVacationRental']) ? $_POST['rblVacationRental'] : '';
 		$Rating = $this->get_rating();
-		$Limited = '';
-		$UserName = '13baaeb6-1bba-4bad-8893-3f0bca64e274'; //'b61fc9d0-d42f-4a8d-a8ae-f75042c1f039';
+		$Limited = ($this->uri->segment(2) === 'demo');
+		$UserName = userID();	//'13baaeb6-1bba-4bad-8893-3f0bca64e274'; //'b61fc9d0-d42f-4a8d-a8ae-f75042c1f039';
 		$LinkPR = '';
 		$BBCategory = isset($_POST['rblBBCategory']) ? $_POST['rblBBCategory'] : '';
 		$LinkType = '';
-		$my_list = !($this->uri->segment(2) === FALSE);
+		$my_list = ($this->uri->segment(2) == 'my') || ($this->uri->segment(3) == 'my');	//!($this->uri->segment(2) === FALSE) && ($this->uri->segment(2) !== 'demo');
 		
 		$query = $this->client_data_search($Website, $Classification, $PriceType, $BBSpecials, $UserReview, $Google, $Yahoo, $MSN, $Quantified, $VacationRental, $Rating, $Limited, $UserName, $LinkPR, $BBCategory, $LinkType, $sort_column, $sort_direction);
 		$data['bbdata'] = $query->result_array();
-		
+
+		$UserName = ($this->uri->segment(2) === 'demo') ? 'Demonstration' : userID();
+
 		$this->load->vars($data);
 
 		$this->load->helper('url');
@@ -182,8 +189,56 @@ class Search extends Application {
 	
 	function client_data_search($Website, $Classification, $PriceType, $BBSpecials, $UserReview, $Google, $Yahoo, $MSN, $Quantified, $VacationRental, $Rating, $Limited, $UserName, $LinkPR, $BBCategory, $LinkType, $sort_column, $sort_direction)
 	{
-		if($Limited !== '') {
+		if($Limited === 'x') {	//THIS IS BADLY BROKEN!!!
+			
+			//mySQL doesn't yet support "LIMIT & IN/ALL/ANY/SOME subquery"
+			//so we have to do our subquery here
+			$sql = $this->db->query ('SELECT b.BBDataID
+			FROM Classification c
+			INNER JOIN 
+			BBData b ON c.ClassficationID = b.Classification
+			WHERE ((b.Enabled = 1) AND (Classification = c.ClassficationID) AND (c.ClassficationID <> 32)) LIMIT 0, 2');
+			$result = $sql->result();
+			$sub_query = '';
+			foreach($result as $row)
+				{
+					$sub_query .= $row->BBDataID . ',';
+				}
+			if(substr($sub_query,strlen($sub_query)-1,1) == ',')
+				$sub_query = substr($sub_query,0,strlen($sub_query)-1);
+			
+			
+			$sql = 'SELECT DISTINCT b.BBDataID, c.ClassficationText, ClientBBData.ClientBBDataId, b.WebSiteText, b.LastUpdated, b.QuantcastCurrent, 
+			b.QuantcastChange, b.CompeteCurrent, b.CompeteChange, b.Rating, 0 As Checked, Null as  Price ,  LinkType.LinkTypeText as LinkType,  
+			b.BBCategory, b.LinkPR, PriceType.PriceTypeText AS PriceType, b.UserReview, COALESCE(b.VacationRental, 0) As VacationRental, b.BBListSpecials
+			FROM Classification c
+			INNER JOIN 
+			BBData b ON c.ClassficationID = b.Classification
 
+			LEFT OUTER JOIN
+			PriceType ON b.PriceType = PriceType.PriceID 
+
+			INNER JOIN
+			StatesServed ON b.BBDataId = StatesServed.BBDataId 
+
+			LEFT OUTER JOIN
+			LinkType ON b.LinkType= LinkType.LinkTypeID
+			
+			LEFT OUTER JOIN
+			ClientBBData ON b.BBDataId IN
+             (SELECT     ClientBBData.BBDataID FROM ClientBBData
+                 WHERE      (ClientBBData.UserID = \'' . $UserName . '\'))
+
+
+			INNER JOIN
+			ClientStates ON StatesServed.StateServed IN
+				  (SELECT     ClientStates.StateCode FROM ClientStates
+					WHERE      (ClientStates.UserID = \'' . $UserName . '\')) 
+
+
+			WHERE b.BBDataId IN (' . $sub_query . ')';
+
+/*
 			$sql = 'SELECT b.BBDataID, c.ClassficationText, ClientBBData.ClientBBDataId, b.WebSiteText, 
 					b.LastUpdated, b.QuantcastCurrent, b.QuantcastChange, b.CompeteCurrent, b.CompeteChange, b.Rating, 
 					COALESCE(ClientBBData.BBDataID,0) AS Checked, b.Price,
@@ -318,11 +373,14 @@ class Search extends Application {
 							
 			$sql .= ' ORDER BY ' . $sort_column . ' ' . $sort_direction . ', ';
 			
-			if($Limited !== '') {
-				$sql .= 'c.ClassficationText ASC';
+			if($Limited) {
+				$sql .= 'ClassficationText ASC';
 			} else {
 				$sql .= 'WebSiteText ASC';
 			}
+			
+			if($Limited)
+				$sql .= ' LIMIT 0, 10';
 //print($sql);
 		return ($this->db->query ($sql));
 	}

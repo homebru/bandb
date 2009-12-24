@@ -15,8 +15,8 @@
 									Voice<br />
 									&nbsp; &nbsp; (320) 451-9839 Fax
 									<br />
-								</strong>&nbsp; &nbsp;&nbsp; </span><a href="mailto:dr@innstrategy.com"><span style="font-size: 8pt">
-									dr@innstrategy.com</span></a><span style="font-size: 8pt">
+								</strong>&nbsp; &nbsp;&nbsp; </span><a href="mailto:".<?= $this->config->item('email_from'); ?>"><span style="font-size: 8pt">
+									<?= $this->config->item('email_from'); ?></span></a><span style="font-size: 8pt">
 										<br />
 									</span>
 							<br />

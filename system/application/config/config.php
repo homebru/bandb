@@ -11,7 +11,10 @@
 |	http://example.com/
 |
 */
-$config['base_url']	= "http://localhost/bandb/";
+if (stristr($_SERVER['HTTP_HOST'], 'local') || (substr($_SERVER['HTTP_HOST'], 0, 07) == '192.168')) 
+	$config['base_url']	= "http://localhost/bandb/";
+else
+	$config['base_url']	= "http://bandb.bodhilogic.com/";
 
 /*
 |--------------------------------------------------------------------------
@@ -42,7 +45,10 @@ $config['index_page'] = "";
 | 'ORIG_PATH_INFO'	Uses the ORIG_PATH_INFO
 |
 */
-$config['uri_protocol']	= "AUTO";
+if (stristr($_SERVER['HTTP_HOST'], 'local') || (substr($_SERVER['HTTP_HOST'], 0, 07) == '192.168')) 
+	$config['uri_protocol']	= "AUTO";
+else
+	$config['uri_protocol']	= "REQUEST_URI";
 
 /*
 |--------------------------------------------------------------------------
@@ -325,6 +331,17 @@ $config['rewrite_short_tags'] = FALSE;
 */
 $config['proxy_ips'] = '';
 
+
+/*
+|--------------------------------------------------------------------------
+| InnStrategy Special Config for Email
+|--------------------------------------------------------------------------
+|
+*/
+if (stristr($_SERVER['HTTP_HOST'], 'bandb.bodhilogic.com')) 
+	$config['email_from'] = 'support@bodhilogic.com';
+else
+	$config['email_from'] = 'dr@innstrategy.com';
 
 /* End of file config.php */
 /* Location: ./system/application/config/config.php */

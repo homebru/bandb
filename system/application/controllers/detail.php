@@ -1,10 +1,12 @@
 <?php
 
-class Detail extends Controller {
+class Detail extends Application {
 
 	function Detail()
 	{
-		parent::Controller();	
+		parent::Application();	
+		if($this->uri->segment(2) !== 'demo')
+			$this->auth->restrict('user');
 	}
 	
 	function index()
@@ -35,7 +37,7 @@ class Detail extends Controller {
 		$query = $this->get_BBData_SelectOne($id);
 		$data['bbdata'] = $query->row();
 		
-		$UserID = '13baaeb6-1bba-4bad-8893-3f0bca64e274';
+		$UserName = userID();	//The userID to use for demos is set in search.php controller
 		$query = $this->get_ClientBBDataSelectOne($UserID, $id);
 		$data['ad_log'] = $query->row();
 		$data['ad_log_count'] = $query->num_rows();

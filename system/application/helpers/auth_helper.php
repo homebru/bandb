@@ -17,6 +17,23 @@ function username()
 	return $CI->session->userdata('username');
 }
 
+function userID()
+{
+	$CI =& get_instance();
+	return $CI->session->userdata('UserID');
+}
+
+function set_userID($userID)
+//This function is used to push our demo user's id 
+//into the system for the demo functions
+{
+	$CI =& get_instance();
+	$data = array(
+			'UserID' => $userID
+			);
+	$CI->session->set_userdata($data);
+}
+
 function user_group($group)
 {
 	$CI =& get_instance();

@@ -146,13 +146,14 @@ class Auth
 
 			$userdata = $this->CI->db->query("SELECT * FROM `$this->user_table` WHERE `$auth_type` = '$username'");
 			$row = $userdata->row_array();
-			
+
 			$data = array(
 						$auth_type => $username,
 						'username' => $row['username'],
 						'user_id' => $row['id'],
 						'group_id' => $row['group_id'],
-						'logged_in' => TRUE
+						'logged_in' => TRUE,
+						'UserID' => $row['UserID']
 						);
 			$this->CI->session->set_userdata($data);
 
@@ -224,6 +225,15 @@ class Auth
 			$password = $this->_salt(set_value('password'));
 			$email = set_value('email');
 			
+			// InnStrategy's legacy .Net system used the .Net Authorization system
+			// which, in turn, uses GUIDs as user IDs.
+			// The simplest way to bridge between legacy .Net data and this
+			// application port is to add a GUID field to our Authorization system
+			// and make the GUID (UserID) freely available to any Model/View/Controller
+			// that may have need to use it (e.g. many of the leagcy queries that this
+			// port uses specify a relation to a UserID parameter).
+			$UserID = $this->CreateGUID();
+
 			if($edit === TRUE)
 			{
 				$this->CI->db->query("UPDATE `$this->user_table` SET `email` = '$email' WHERE `id` = '$id'");
@@ -233,7 +243,7 @@ class Auth
 			{				
 				$this->CI->load->helper('url');
 				
-				$this->CI->db->query("INSERT INTO `$this->user_table` (username, email, password) VALUES ('$username', '$email', '$password')");
+				$this->CI->db->query("INSERT INTO `$this->user_table` (username, email, password, UserID) VALUES ('$username', '$email', '$password', '$UserID')");
 
 				$row_id = $this->CI->db->insert_id();
 				$this->send_add_email($row_id, $username, $uncrypt_password, $email);
@@ -469,10 +479,10 @@ class Auth
 	$config['mailtype'] = 'html';
 	$this->CI->email->initialize($config);
 	
-	$this->CI->email->from('dr@innstrategy.com', 'Inn Strategy');
+	$this->CI->email->from($this->config->item('email_from'), 'Inn Strategy');
 	$this->CI->email->to($email);
 	//$this->email->cc('another@another-example.com'); 
-	$this->CI->email->bcc('dr@innstrategy.com'); 
+	$this->CI->email->bcc($this->config->item('email_from')); 
 	
 	$this->CI->email->subject("Inn Strategy - Account Information");
 	$this->CI->email->message($bodyMsg);
@@ -481,6 +491,27 @@ class Auth
 
 	}
 
+	function CreateGUID()
+/*  CreateGUID is used to return a unique ID to use as an index
+    in the database.  It is a maximum length string of 35.  It uses
+    the PHP command uniqid to create a 23 character string appended
+    to the IP address of the client without periods.                */
+    {
+    //Append the IP address w/o periods to the front of the unique ID
+    $varGUID = str_replace('.', '', uniqid($_SERVER['REMOTE_ADDR'], TRUE));
+	
+	$s = strtoupper(md5($varGUID)); 
+    $varGUID = 
+        substr($s,0,8) . '-' . 
+        substr($s,8,4) . '-' . 
+        substr($s,12,4). '-' . 
+        substr($s,16,4). '-' . 
+        substr($s,20); 
+
+   
+    //Return the GUID as the function value
+    return $varGUID;
+    }
 	
 } // class Auth
 

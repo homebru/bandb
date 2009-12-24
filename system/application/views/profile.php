@@ -1,10 +1,10 @@
     <div id="AccountPanel" style="height:450px;">
 	
     <div style="clear: left; text-align: right;">
-    <a id="HyperLink1" href="ChangePassword.aspx" style="display:inline-block;width:652px;">Change password?</a></div>
+    <?php if($this->uri->segment(2) !== 'demo'): ?><a id="HyperLink1" href="ChangePassword.aspx" style="display:inline-block;width:652px;">Change password?</a><?php endif; ?></div>
         <div>
        &nbsp;<strong><span style="font-size: 10pt"> Registered information for  </span></strong> 
-            <span id="lblEmail1Value" style="font-size:10pt;font-weight:bold;"><?php //echo username(); ?></span><strong><span style="font-size: 10pt">
+            <span id="lblEmail1Value" style="font-size:10pt;font-weight:bold;"><?= $client->PropertyName; ?></span><strong><span style="font-size: 10pt">
             </span></strong><br /><br />
         <fieldset>
             <legend>Account Information</legend>
@@ -14,7 +14,7 @@
                         <span id="lblPropertyName" style="color:DimGray;">Property Name:</span>
                     </td>
                     <td>
-                        <input name="txtPropertyName" type="text" value="Inn at Weston" id="txtPropertyName" class="texta" style="width:210px;" value="<?php echo $client->PropertyName; ?>" />
+                        <input name="txtPropertyName" type="text" id="txtPropertyName" class="texta" style="width:210px;" value="<?= $client->PropertyName; ?>" />
                         <!--span id="RequiredFieldValidator2" style="color:Red;visibility:hidden;">*</span-->
 					</td>
                 </tr>
@@ -117,8 +117,8 @@
 					</td>
                 </tr>
                 <tr>
-                    <td>
-                &nbsp;
+                    <td>&nbsp;
+                
                     </td>
                     <td>
                     (e.g.  http://www.bedandbreakfast.com)

@@ -41,7 +41,7 @@
 */
 
 $route['default_controller'] = "home";
-$route['scaffolding_trigger'] = "taimers";
+$route['scaffolding_trigger'] = "";
 
 // BEGIN AUTHENTICATION LIBRARY ROUTES
 $route['login'] = "admin/admin/login";
@@ -50,11 +50,14 @@ $route['register'] = "admin/admin/register";
 $route['admin/dashboard'] = "admin/admin/index";
 // END AUTHENTICATION LIBRARY ROUTES
 
+$route['search/demo'] = "search";
 $route['search/my'] = "search";
+$route['search/demo/my'] = "search";
 
 $route['detail/(:num)'] = "detail/show/$1";
 
 $route['profile'] = "profile/edit";
+$route['profile/demo'] = "profile/edit";
 
 /* End of file routes.php */
 /* Location: ./system/application/config/routes.php */
