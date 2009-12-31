@@ -16,7 +16,7 @@
 													</tr><tr>
 														<td align="right" colspan="2"><input type="submit" value="Login" name="login" /></td>
 													</tr><tr>
-														<td colspan="2"><a id="CreateUserLink" href="sitepasswords">Don't have an account? Create one!</a><br /><a id="PasswordRecoveryLink" href="forgot_password">Forgot your password?</a></td>
+														<td colspan="2"><a id="CreateUserLink" href="register">Don't have an account? Create one!</a><br /><a id="PasswordRecoveryLink" href="forgot">Forgot your password?</a></td>
 													</tr>
 												</table></td>
 											</tr>

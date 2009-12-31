@@ -87,7 +87,7 @@
                 <tr>
                     <td colspan="4" style="height: 14px">
                         <textarea id="txtNotesValue" readonly="readonly" TextMode="MultiLine"
-                            style="width:690px; height:100px; background-color:#FFFFFF;" class="texta"><?php echo $bbdata->Notes; ?></textarea>
+                            style="width:690px; height:100px; background-color:#ffffff;" class="texta"><?php echo $bbdata->Notes; ?></textarea>
 					</td>
                 </tr>
             </table>
@@ -175,13 +175,13 @@
                     <td style="width: 100px;">
                         <label id="lblCointact1">Contact 1 :</label>
 					</td>
-                    <td style="width: 243px; background-color: #FFFFFF;">
+                    <td style="width: 243px; background-color: #ffffff;">
                         <label id="lblCointact1Value"><?php echo $bbdata->Contact; ?></label>
 					</td>
                     <td style="width: 121px;">
                         <label id="lblContact2">Contact 2 :</label>
 					</td>
-                    <td style="width: 293px; background-color: #FFFFFF;">
+                    <td style="width: 293px; background-color: #ffffff;">
                         <label id="lblContact2Value"><?php echo $bbdata->Contact2; ?></label>
 					</td>
                 </tr>
@@ -189,13 +189,13 @@
                     <td style="width: 100px;">
                         <label id="lblTitle1">Title :</label>
 					</td>
-                    <td style="width: 243px; background-color: #FFFFFF;">
+                    <td style="width: 243px; background-color: #ffffff;">
                         <label id="lblTitle1Value"><?php echo $bbdata->Contact1Title; ?></label>
 					</td>
                     <td style="width: 121px;">
                         <label id="lblTitle2">Title :</label>
 					</td>
-                    <td style="width: 293px; background-color: #FFFFFF;">
+                    <td style="width: 293px; background-color: #ffffff;">
                         <label id="lblTitle2Value"><?php echo $bbdata->Contact2Title; ?></label>
 					</td>
                 </tr>
@@ -203,13 +203,13 @@
                     <td style="width: 100px;">
                         <label id="lblEmail1">Email Sales :</label>
 					</td>
-                    <td style="width: 243px; background-color: #FFFFFF;">
+                    <td style="width: 243px; background-color: #ffffff;">
                         <a id="lblEmail1Value" href="mailto:<?php echo $bbdata->EmailSales; ?>"><?php echo $bbdata->EmailSales; ?></a>
 					</td>
                     <td style="width: 121px;">
                         <label id="lblEmail2">Email Support :</label>
 					</td>
-                    <td style="width: 293px; background-color: #FFFFFF;">
+                    <td style="width: 293px; background-color: #ffffff;">
                         <a id="lblEmail2Value" href="mailto:<?php echo $bbdata->EmailSupport; ?>"><?php echo $bbdata->EmailSupport; ?></a>
 					</td>
                 </tr>
@@ -217,24 +217,24 @@
                     <td style="width: 100px;">
                         <label id="lblPhone1">Phone :</label>
 					</td>
-                    <td style="width: 243px; background-color: #FFFFFF;">
+                    <td style="width: 243px; background-color: #ffffff;">
                         <label id="lblPhone1Value"><?php echo $bbdata->RegularPhone; ?></label>
 					</td>
                     <td style="width: 121px;">
                         <label id="lblPhone2">Phone :</label>
 					</td>
-                    <td style="width: 293px; background-color: #FFFFFF;">
+                    <td style="width: 293px; background-color: #ffffff;">
                         <label id="lblPhone2Value"><?php echo $bbdata->Contact2RegularPhone; ?></label>
 					</td>
                 </tr>
                 <tr>
                     <td style="width: 100px;">
                         <label id="lblTollFree1">Toll Free :</label></td>
-                    <td style="width: 243px; background-color: #FFFFFF;">
+                    <td style="width: 243px; background-color: #ffffff;">
                         <label id="lblTollFree1Value"><?php echo $bbdata->TollFreePhone; ?></label></td>
                     <td style="width: 121px;">
                         <label id="lblTollFree2">Toll Free :</label></td>
-                    <td style="width: 293px; background-color: #FFFFFF;">
+                    <td style="width: 293px; background-color: #ffffff;">
                         <label id="lblTollFree2Value"><?php echo $bbdata->Contact2TollFreePhone; ?></label></td>
                 </tr>
             </table>

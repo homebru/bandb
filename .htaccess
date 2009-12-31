@@ -8,7 +8,7 @@ RewriteRule ^(.*)$ index.php/$1 [L,QSA]
 #Options +FollowSymlinks
 #RewriteEngine on
  
-#RewriteCond %{REQUEST_URI} (index\.php|webroot/|robots\.txt|favicon\.ico)
+#RewriteCond %{REQUEST_URI} (index\.php|webroot/|blog/|robots\.txt|favicon\.ico)
 #RewriteRule ^(images|css|files|js)/(.*)$ webroot/$1/$2 [L]
 #RewriteRule ^(favicon\.ico)$ webroot/$1 [L]
  

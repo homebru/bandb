@@ -71,17 +71,20 @@
 					<tr>
 						<td width="160">
 							<strong>B&amp;B&nbsp;Specials :</strong>&nbsp;
-							<span id="rblBBSpecials"><input id="rblBBSpecials_0" type="radio" name="rblBBSpecials" value="Y" <?php echo (isset($_POST['rblBBSpecials']) && ($_POST['rblBBSpecials'] === 'Y')) ? 'checked="checked"' : '' ?> /><label for="rblBBSpecials_0">Yes</label>
+							<span id="rblBBSpecials">
+							<input id="rblBBSpecials_0" type="radio" name="rblBBSpecials" value="Y" <?php echo (isset($_POST['rblBBSpecials']) && ($_POST['rblBBSpecials'] === 'Y')) ? 'checked="checked"' : '' ?> /><label for="rblBBSpecials_0">Yes</label>
 							<input id="rblBBSpecials_1" type="radio" name="rblBBSpecials" value="N" <?php echo (isset($_POST['rblBBSpecials']) && ($_POST['rblBBSpecials'] === 'N')) ? 'checked="checked"' : '' ?> /><label for="rblBBSpecials_1">No</label></span>
 						</td>
 						<td width="160">
 							<strong>User&nbsp;Review&nbsp; :</strong>
-							<span id="rblUserReview"><input id="rblUserReview_0" type="radio" name="rblUserReview" value="Y" <?php echo (isset($_POST['rblUserReview']) && ($_POST['rblUserReview'] === 'Y')) ? 'checked="checked"' : '' ?> /><label for="rblUserReview_0">Yes</label>
+							<span id="rblUserReview">
+							<input id="rblUserReview_0" type="radio" name="rblUserReview" value="Y" <?php echo (isset($_POST['rblUserReview']) && ($_POST['rblUserReview'] === 'Y')) ? 'checked="checked"' : '' ?> /><label for="rblUserReview_0">Yes</label>
 							<input id="rblUserReview_1" type="radio" name="rblUserReview" value="N" <?php echo (isset($_POST['rblUserReview']) && ($_POST['rblUserReview'] === 'N')) ? 'checked="checked"' : '' ?> /><label for="rblUserReview_1">No</label></span>
 						</td>
 						<td width="160" >
 							<strong>B&amp;B Category :</strong>
-							<span id="rblBBCategory"><input id="rblBBCategory_0" type="radio" name="rblBBCategory" value="1" <?php echo (isset($_POST['rblBBCategory']) && ($_POST['rblBBCategory'] == 1)) ? 'checked="checked"' : '' ?> /><label for="rblBBCategory_0">Yes</label>
+							<span id="rblBBCategory">
+							<input id="rblBBCategory_0" type="radio" name="rblBBCategory" value="1" <?php echo (isset($_POST['rblBBCategory']) && ($_POST['rblBBCategory'] == 1)) ? 'checked="checked"' : '' ?> /><label for="rblBBCategory_0">Yes</label>
 							<input id="rblBBCategory_1" type="radio" name="rblBBCategory" value="0" <?php echo (isset($_POST['rblBBCategory']) && ($_POST['rblBBCategory'] == 0)) ? 'checked="checked"' : '' ?> /><label for="rblBBCategory_1">No</label></span>
 						</td>
 					  <td width="160" >

@@ -126,6 +126,23 @@ class Application extends Controller
 
 	} // function reg_email_check()
 
+	function forgot_email_check($str)
+	{	
+		$user_table = user_table();
+		$query = $this->db->query("SELECT * FROM `$user_table` WHERE `email` = '$str'");
+		
+		if($query->num_rows == 1)
+		{
+			return TRUE;
+		}
+		else
+		{
+			$this->form_validation->set_message('forgot_email_check', 'The email address you provided is not registered in this system.');
+			return FALSE;
+		}
+
+	} // function reg_email_check()
+
 }
 
 ?>

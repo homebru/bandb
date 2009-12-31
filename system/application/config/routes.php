@@ -47,6 +47,8 @@ $route['scaffolding_trigger'] = "";
 $route['login'] = "admin/admin/login";
 $route['logout'] = "admin/admin/logout";
 $route['register'] = "admin/admin/register";
+$route['change'] = "admin/admin/edit";
+$route['forgot'] = "admin/admin/forgot";
 $route['admin/dashboard'] = "admin/admin/index";
 // END AUTHENTICATION LIBRARY ROUTES
 
