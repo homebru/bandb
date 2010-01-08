@@ -1,47 +1,38 @@
+	<h3><span style="color: #660099">Global Distribution Systems</span></h3>
 			<div>
-                    <table>
-                        <tr>
-                            <td>
-                                <?php echo img('images/gdsimg.png'); ?></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <br />
-                                <p style="text-align: justify">
-                                    The GDS or Global Distribution Systems is a computer network that enables travel
-                                    agencies to book your rooms directly on behalf of their clients. Developed in the
-                                    60s and 70s this pre-Internet technology consists of four reservation systems Amadeus,
-                                    Galileo, Sabre and Worldspan. With more travelers booking lodging on the Internet,
-                                    one might think that this would signal the end of Travel Agencies (TA). So far,
-                                    this has not been the case. While TA may handle more business or corporate accounts
-                                    than leisure travel, if you have excess room availability, then this is one option
-                                    to explore.
-                                </p>
-                                <p style="text-align: justify">
-                                    The standard commission that lodging properties pay when a travel agent books a
-                                    room reservation is 10%. However in order to physically enter your room availability
-                                    into the GDS computer system, you need to work with a 3rd party company that provides
-                                    "GDS Representation Services." These companies charge an additional fee above and
-                                    beyond the 10% to TA. A list of these companies and some of their contact and pricing
-                                    information can be viewed below.
-                                </p>
-                                <p style="text-align: justify">
-                                    While there are several pricing models (monthly minimum, minimum charge per booking,
-                                    straight percentage of the full price of the reservation, percentage plus a flat
-                                    per booking fee, etc.) ultimately they connect you to the same GDS. This is much
-                                    like choosing an Internet provider, where they all connect you to the same Internet.
-                                    Some of the differences that are most apparent (besides the pricing) is the actual
-                                    web site interface where you list your rooms and modify your availability. Ask to
-                                    see the interface (similar to your availability calendar) so that you know what
-                                    type of system you will be working with on a regular basis.
-                                </p>
-                                <p style="text-align: justify">
-                                    We are in the midst of negotiating a preferred rate for GDS representations services
-                                    for all Inn Strategy members.</p>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
+				<p>
+					The GDS or Global Distribution Systems is a computer network that enables travel
+					agencies to book your rooms directly on behalf of their clients. Developed in the
+					60s and 70s this pre-Internet technology consists of four reservation systems Amadeus,
+					Galileo, Sabre and Worldspan. With more travelers booking lodging on the Internet,
+					one might think that this would signal the end of Travel Agencies (TA). So far,
+					this has not been the case. While TA may handle more business or corporate accounts
+					than leisure travel, if you have excess room availability, then this is one option
+					to explore.
+				</p>
+				<p>
+					The standard commission that lodging properties pay when a travel agent books a
+					room reservation is 10%. However in order to physically enter your room availability
+					into the GDS computer system, you need to work with a 3rd party company that provides
+					"GDS Representation Services." These companies charge an additional fee above and
+					beyond the 10% to TA. A list of these companies and some of their contact and pricing
+					information can be viewed below.
+				</p>
+				<p>
+					While there are several pricing models (monthly minimum, minimum charge per booking,
+					straight percentage of the full price of the reservation, percentage plus a flat
+					per booking fee, etc.) ultimately they connect you to the same GDS. This is much
+					like choosing an Internet provider, where they all connect you to the same Internet.
+					Some of the differences that are most apparent (besides the pricing) is the actual
+					web site interface where you list your rooms and modify your availability. Ask to
+					see the interface (similar to your availability calendar) so that you know what
+					type of system you will be working with on a regular basis.
+				</p>
+				<p>
+					We are in the midst of negotiating a preferred rate for GDS representations services
+					for all Inn Strategy members.</p>
+			</div>
+				
                 <table style="background-color: White; border-left-width: 1px; border-left-color: #000000;
                     border-bottom-width: 1px; border-bottom-color: #000000; border-right-width: 1px;
                     border-right-color: #000000;" width="100%">
@@ -56,7 +47,7 @@
                     <col width="68" />
                     <col width="154" />
                     <col width="78" />
-                    <tr height="36">
+                    <tr height="36" valign="bottom">
                         <td style="width: 264px; height: 36px;">
                             <strong>GDS Rep Company</strong></td>
                         <td style="width: 229px; height: 36px">
@@ -64,9 +55,9 @@
                         <td width="144" style="height: 36px">&nbsp;
                             
                         </td>
-                        <td width="25" style="height: 36px">
+                        <td width="25" align="right" style="height: 36px">
                             <strong>%</strong></td>
-                        <td width="50" style="height: 36px">
+                        <td width="50" align="right" style="height: 36px">
                             <strong>Setup</strong></td>
                         <td width="70" style="height: 36px">
                             <div align="right">
@@ -76,10 +67,10 @@
                             <div align="right">
                                 <strong>Monthly minimum</strong></div>
                         </td>
-                        <td width="55" style="height: 36px">
+                        <td width="55" align="right" style="height: 36px">
                             <strong>Per booking</strong></td>
-                        <td width="68" style="height: 36px">
-                            <strong>min per booking $</strong></td>
+                        <td width="68" align="right" style="height: 36px">
+                            <strong>min per booking&nbsp;$</strong></td>
                         <td width="154" style="height: 36px">
                             <strong>Interface to GDS</strong></td>
                         <td width="78" style="height: 36px">

@@ -1,10 +1,15 @@
 
-
+/* { padding:0px; margin:0px; }*/
 body {
 	background:url(../images/InnStrategy-bg.gif) repeat-x;
-	   font: 8pt Tahoma, sans-serif;
+	   font: 78% Tahoma, sans-serif;
+	   margin:0;
+	   padding:0;
 	}
-
+p {
+	margin-top:1em;
+	line-height:1.4em;
+}
 #content-leftside-1
 {
     position: absolute;
@@ -158,11 +163,11 @@ tr.datacelltwo
     color: black;
 }
 .holder2 {
-	/*margin:0 auto;
-	width:1100px;*/
-	   position: absolute;
+	margin:0 auto;
+	width:900px;
+	/*   position: absolute;
   
-	height:auto;
+	height:auto;*/
 	
 }	
 
@@ -265,8 +270,8 @@ tr.datacelltwo
 {
     float: left;
     clear: left;
-    width: 1050px;
-	margin:10px 0;
+    /*width: 900px; /*1050px;*/
+	margin:0 0 10px 0;
 	padding:10px;
     padding-bottom: 40px;
     background-color: #ffffff;
@@ -613,4 +618,23 @@ textarea
 	color:#990000;
 	font-weight:normal;
 }
+
+/*--- Header ---*/
+#Header { border-bottom:4px solid #fdce06; }
+#Header .holder { height:52px; position:relative; width:980px; margin:0 auto;}
+#Header h1.logo { position:absolute; top:7px; left:8px; background:url(../images/logo.png) left top no-repeat; width:273px; height:65px; }
+#Header h1.logo a { width:273px; height:65px; display:block; text-indent:-9999px; overflow:hidden; }
+#Header .headImg { position:absolute; width:205px; height:55px; top:0px; left:648px; background:url(../images/header-img.gif) left top no-repeat; }
+#Header .leftTxt { position:absolute; left:298px; padding-top:9px; font:italic 14px/33px Arial, Helvetica, sans-serif; color:#666;  top:7px; border-left:2px solid #f4f4f4; padding-left:10px; }
+#Header .floatRight { white-space:nowrap; background:#f4f2e8 url(../images/bottom-left.gif) left bottom no-repeat; padding-left:25px; font-size:14px; }
+#Header .floatRight .inner { padding-right:25px; line-height:30px; background:url(../images/bottom-right.gif) right bottom no-repeat; }
+
+/*--- Nav ---*/
+#Nav { background:url(../images/nav2.gif) left top repeat-x #563d7d; height:45px;}
+#Nav .holder {width:980px; margin:-12px auto 0 auto;}
+#Nav .holder li { display:inline; }
+#Nav .holder li a { font:bold 13px/45px Tahoma, Arial, Helvetica, sans-serif; color:#fff; float:right; display:block; padding:0px 15px; text-decoration:none; background:url(../images/spacer2.gif) left top no-repeat; }
+#Nav .holder li a:hover { background:url(../images/arrow.gif) center top no-repeat; }
+#Nav .holder li a.on { background:url(../images/arrow.gif) center top no-repeat; }
+
 

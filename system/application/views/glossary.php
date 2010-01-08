@@ -2,15 +2,15 @@
                <table>
                         <tr>
                             <td>
-                                <?php img('images/intro.png'); ?></td>
+                                <h3><span style="color: #660099">Glossary<span></h3></td>
                         </tr>
                         <tr>
                             <td >
                                 <p>
                                     Online Advertising Intelligence for Innkeepers - Everything
                                         you need in one place</p>
-                                <p>
-                                    &nbsp;
+                                <p>&nbsp;
+                                    
                                 </p>
                                 <p>
                                     <span style="color: #3366ff"><a href="#categories">Main Categories</a><span style="mso-tab-count: 1">

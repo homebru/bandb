@@ -88,7 +88,8 @@ class Admin extends Application
 		if ($this->form_validation->run() == FALSE)
 			{
 
-				$this->load->view('auth/header');
+				//$this->load->view('auth/header');
+				$this->load->view('header_user');
 				$this->load->view('auth/forgot_password');
 				$this->load->view('footer_std');
 			}
@@ -100,7 +101,8 @@ class Admin extends Application
 							
 				$this->load->vars($data);
 
-				$this->load->view('auth/header');
+				//$this->load->view('auth/header');
+				$this->load->view('header_user');
 				$this->load->view('auth/forgot_password');
 				$this->load->view('footer_std');
 		

@@ -1,10 +1,10 @@
 <?php
 
-class Publishers extends Controller {
+class Publishers extends Application {
 
 	function Publishers()
 	{
-		parent::Controller();	
+		parent::Application();	
 	}
 	
 	function index()
@@ -21,7 +21,7 @@ class Publishers extends Controller {
 		$this->load->helper('form');
 		$this->load->library('ajax');
 		
-		$this->load->view('header_std');
+		$this->load->view('header_user');
 		$this->load->view('publishers');
 		$this->load->view('footer_std');
 		

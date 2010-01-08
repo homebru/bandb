@@ -62,10 +62,10 @@ class Search extends Application {
 */
 
 		$prev_sort_column = isset($_POST['prev_sort_column']) ? $_POST['prev_sort_column'] : "";	//$this->input->post("prev_sort_column");
-		$sort_column = isset($_POST['sort_column']) ? $_POST['sort_column'] : "WebSiteText";
+		$sort_column = isset($_POST['sort_column']) ? $_POST['sort_column'] : (user_group('admin') === TRUE) ? "LastUpdated" : "WebSiteText";
 		$data['prev_sort_column'] = $sort_column;
-	
-		$sort_direction = "ASC";
+
+		$sort_direction = (user_group('admin') === TRUE) ? "DESC" : "ASC";
 		if($prev_sort_column == $sort_column)
 		{
 			if(isset($_POST['sort_direction']) && ($_POST['sort_direction'] == "ASC"))
@@ -116,7 +116,7 @@ class Search extends Application {
 		$my_list = ($this->uri->segment(2) == 'my') || ($this->uri->segment(3) == 'my');	//!($this->uri->segment(2) === FALSE) && ($this->uri->segment(2) !== 'demo');
 		
 		if(user_group('admin') === TRUE)
-			$query = $this->client_admin_search($Rating, $LinkPR, $MaxPR, $Quantified, $BBSpecials, $Yahoo, $BBCategory, $MSN, $Google, $UserReview, $PriceType, $LinkType, $AdPackage, $Website, $Classification, $State, $Limited);
+			$query = $this->client_admin_search($Rating, $LinkPR, $MaxPR, $Quantified, $BBSpecials, $Yahoo, $BBCategory, $MSN, $Google, $UserReview, $PriceType, $LinkType, $AdPackage, $Website, $Classification, $State, $Limited, $sort_column, $sort_direction);
 		else	
 			$query = $this->client_data_search($Website, $Classification, $PriceType, $BBSpecials, $UserReview, $Google, $Yahoo, $MSN, $Quantified, $VacationRental, $Rating, $Limited, $UserName, $LinkPR, $BBCategory, $LinkType, $sort_column, $sort_direction);
 	
@@ -370,47 +370,37 @@ class Search extends Application {
 						  
 					WHERE (BBData.Enabled = 1)';
 
-					if($LinkPR !== '') {
+					if(!empty($LinkPR))
 						$sql .= ' AND COALESCE(LinkPR,0) IN (' . $LinkPR . ')';
-					}		
 					
-					if($BBCategory  !== '') {
+					if(!empty($BBCategory))
 						$sql .= ' AND COALESCE(BBCategory,0) = ' . $BBCategory;
-					}
 					
-					if($LinkType  !== '') {     
+					if(!empty($LinkType))
 						$sql .= ' AND LinkType = ' . $LinkType;
-					}
 						
-					if($Quantified !== '') {                                          
+					if(!empty($Quantified))                        
 						$sql .= ' AND Quantified LIKE \'' . $Quantified . '%\'';
-					}
 
-					if($VacationRental  !== '') {
+					if(!empty($VacationRental))
 						$sql .= ' AND COALESCE(BBData.VacationRental,0) = ' . $VacationRental;
-					}				
 	
-					if($BBSpecials !== '') {
+					if(!empty($BBSpecials))
 						$sql .= ' AND BBListSpecials LIKE \'' . $BBSpecials . '%\'';
-					}
 
-					if($Yahoo  !== '') {
+					if(!empty($Yahoo))
 						$sql .= ' AND IndexByYahoo LIKE \'' . $Yahoo . '%\'';
-					}
 					
-					if($MSN  !== '') {
+					if(!empty($MSN))
 						$sql .= ' AND IndexByMSN LIKE \'' . $MSN . '%\'';
-					}
 					
-					if($Google  !== '') { 
+					if(!empty($Google))
 						$sql .= ' AND IndexByGoogle LIKE \'' . $Google . '%\'';
-					}
 					
-					if($UserReview  !== '') {
+					if(!empty($UserReview))
 						$sql .= ' AND UserReview LIKE \'' . $UserReview . '%\'';
-					}
 					
-					if($PriceType  !== '') {     
+					if(!empty($PriceType)) {     
 						if($PriceType !== 'Blank') {
 							$sql .= ' AND PriceType LIKE \'' . $PriceType . '%\'';
 						} else {
@@ -418,8 +408,8 @@ class Search extends Application {
 						}
 					}
 					
-					if($Website === '') { 
-						if($Classification !== '') {    
+					if(empty($Website)) { 
+						if(!empty($Classification)) {    
 							if($Classification <> 'Blank') {
 								$sql .= ' AND Classification  IN (' . $Classification . ')';
 							} else {
@@ -432,9 +422,8 @@ class Search extends Application {
 						$sql .= ' AND WebsiteText LIKE \'' . $Website . '%\'';
 					}
 
-					if($Rating !== '') {
+					if(!empty($Rating))
 						$sql .= ' AND COALESCE(Rating,-1) IN (' . $Rating . ')';
-					}	
 			}	
 							
 			$sql .= ' ORDER BY ' . $sort_column . ' ' . $sort_direction . ', ';
@@ -451,7 +440,7 @@ class Search extends Application {
 		return ($this->db->query ($sql));
 	}
 
-	function client_admin_search($Rating, $LinkPR, $MaxPR, $Quantified, $BBSpecials, $Yahoo, $BBCategory, $MSN, $Google, $UserReview, $PriceType, $LinkType, $AdPackage, $Website, $Classification, $State, $Limited)
+	function client_admin_search($Rating, $LinkPR, $MaxPR, $Quantified, $BBSpecials, $Yahoo, $BBCategory, $MSN, $Google, $UserReview, $PriceType, $LinkType, $AdPackage, $Website, $Classification, $State, $Limited, $sort_column, $sort_direction)
 	{
 		$sql = 'SELECT DISTINCT BBData.BBDataID, DATE_FORMAT(BBData.LastUpdated,\'%m/%d/%Y\') AS LastUpdated, BBData.QuantcastCurrent, BBData.QuantcastChange, 
 				BBData.CompeteCurrent, BBData.CompeteChange, BBData.Rating, BBData.WebSiteText, BBData.WebSite, 
@@ -470,55 +459,53 @@ class Search extends Application {
 		if(!empty($Rating))
 			$sql .= ' AND COALESCE(BBData.Rating,-1) IN (' . $Rating . ')';
 		
-		
 		if(!empty($LinkPR))
 			$sql .= ' AND COALESCE(BBData.LinkPR,0) IN (' . $LinkPR . ')';		
 	
 		if(!empty($MaxPR))
 			$sql .= ' AND COALESCE(BBData.MaxPR,0) IN (' . $MaxPR . ')';
 		
-		if($Quantified !== '')                                          
+		if(!empty($Quantified))                                          
 			$sql .= ' AND BBData.Quantified LIKE \'' . $Quantified . '%\'';
 
-		if($BBSpecials !== '')
+		if(!empty($BBSpecials))
 			$sql .= ' AND BBData.BBListSpecials LIKE \'' . $BBSpecials . '%\'';
 		
-		if($Yahoo !== '')
+		if(!empty($Yahoo))
 			$sql .= ' AND BBData.IndexByYahoo LIKE \'' . $Yahoo . '%\'';
 	
-		if($BBCategory !== '')
+		if(!empty($BBCategory))
 			$sql .= ' AND BBData.BBCategory = ' . $BBCategory;
 	
-		if($MSN !== '')
+		if(!empty($MSN))
 			$sql .= ' AND BBData.IndexByMSN LIKE \'' . $MSN . '%\'';
 	
-		if($Google !== '')
+		if(!empty($Google))
 			$sql .= ' AND BBData.IndexByGoogle LIKE \'' . $Google . '%\'';
 		
-		if($UserReview !== '')
+		if(!empty($UserReview))
 			$sql .= ' AND BBData.UserReview LIKE \'' . $UserReview . '%\'';
 	
-		if($PriceType !== '')
+		if(!empty($PriceType))
 		{
-
-		if($PriceType !== 'Blank')
-		{
-			if($PriceType !== 'All')
-				$sql .= ' AND BBData.PriceType LIKE \'' . $PriceType . '%\'';
+			if($PriceType !== 'Blank')
+			{
+				if($PriceType !== 'All')
+					$sql .= ' AND BBData.PriceType LIKE \'' . $PriceType . '%\'';
+			}
+			else
+				$sql .= ' AND BBData.PriceType IS NULL';
 		}
-		else
-			$sql .= ' AND BBData.PriceType IS NULL';
-		}
 
-		if(($LinkType !== '') && ($LinkType !== 'All'))     
+		if(!empty($LinkType) && ($LinkType !== 'All'))     
 			$sql .= ' AND BBData.LinkType = ' . $LinkType;
 
-		if(($AdPackage !== '') && ($AdPackage !== 'All')) 
+		if(!empty($AdPackage) && ($AdPackage !== 'All')) 
 			$sql .= ' AND BBData.AdPackage = ' . $AdPackage;
 		
-		if($Website === '')  
+		if(empty($Website))  
 		{
-			if($Classification !== '')    
+			if(!empty($Classification))    
 			{
 				if($Classification !== 'Blank') 
 					$sql .= ' AND BBData.Classification IN (' . $Classification . ')';
@@ -527,7 +514,7 @@ class Search extends Application {
 			}
 		}
 	
-		if($State !== '')
+		if(!empty($State))
 		{
 
 			if($State !== 'Blank')
@@ -536,10 +523,10 @@ class Search extends Application {
 				$sql .= ' AND BBData.BBDataId NOT IN(SELECT DISTINCT BBDataID FROM StatesServed WHERE NOT StateServed IS NULL )';
 		}
 
-		if($Website !== '')
+		if(!empty($Website))
 			$sql .= ' AND BBData.WebsiteText LIKE \'' . $Website . '%\'';
 		
-		$sql .= ' ORDER BY BBData.LastUpdated Desc';
+		$sql .= ' ORDER BY ' . $sort_column . ' ' . $sort_direction;
 
 		if($Limited)
 			$sql .= ' LIMIT 0, 10';

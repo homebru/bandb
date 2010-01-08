@@ -1,6 +1,7 @@
 <?php
 
-$this->load->view($this->config->item('auth_views_root') . 'header');
+$this->load->view('header_user');
+//$this->load->view($this->config->item('auth_views_root') . 'header');
 
 if(isset($data))
 {

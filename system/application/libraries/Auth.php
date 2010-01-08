@@ -127,6 +127,10 @@ class Auth
 			}
 			else
 			{
+				$data = array(
+								'page_title' => 'Inn Strategy - Login',
+							);
+				$this->CI->load->vars($data);
 				$this->view('login');
 			}
 		}
@@ -175,6 +179,18 @@ class Auth
 	function logout()
 	{
 		$this->CI->session->sess_destroy();
+		//logged_out status needs to be FORCED
+		//so that the menu shows the correct options
+		$data = array(
+				'logged_in' => FALSE
+				);
+		$this->CI->session->set_userdata($data);
+
+		$data = array(
+						'page_title' => 'Inn Strategy - Logout',
+					);
+		$this->CI->load->vars($data);
+
 		$this->view('logout');
 	} // function logout()
 	

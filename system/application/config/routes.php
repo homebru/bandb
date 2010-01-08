@@ -41,7 +41,7 @@
 */
 
 $route['default_controller'] = "home";
-$route['scaffolding_trigger'] = "";
+$route['scaffolding_trigger'] = "maintain";
 
 // BEGIN AUTHENTICATION LIBRARY ROUTES
 $route['login'] = "admin/admin/login";
@@ -60,6 +60,12 @@ $route['detail/(:num)'] = "detail/show/$1";
 
 $route['profile'] = "profile/edit";
 $route['profile/demo'] = "profile/edit";
+
+// Admin Screens
+$route['maintenance/(:any)'] = "$1/maintain";
+$route['maintenance'] = "pricetype/maintain";
+$route['users'] = "client_search";
+$route['client_detail/(:any)'] = "client_detail/edit/$1";
 
 /* End of file routes.php */
 /* Location: ./system/application/config/routes.php */

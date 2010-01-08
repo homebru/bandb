@@ -98,7 +98,7 @@
 		</div>
 	
     <div>
-	<table cellspacing="0" cellpadding="4" border="0" id="gvResult" style="color:#333333;width:1000px;border-collapse:collapse;">
+	<table cellspacing="0" cellpadding="4" border="0" id="gvResult" style="color:#333333;width:1000px;">
 		<tr style="color:White;background-color:#6D8497;font-weight:bold;"><input type="hidden" id="sort_column" name="sort_column" value="" /><input type="hidden" name="prev_sort_column" value="<?php echo $prev_sort_column ?>" /><input type="hidden" name="sort_direction" value="<?php echo $sort_direction ?>" />
 			<th align="left" scope="col"><a href="#" style="color:White;" onclick="javascript:document.getElementById('sort_column').value='WebSiteText';document.forms[0].submit()">Websites</a></th>
 			<th align="left" scope="col"><a href="#" style="color:White;" onclick="javascript:document.getElementById('sort_column').value='Rating';document.forms[0].submit()">Rating</a></th>

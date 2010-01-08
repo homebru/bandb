@@ -1,9 +1,10 @@
-<?php  $this->load->view('header');  ?>
+<?php $this->load->view('header');  ?>
+<?php $this->load->view('sidebar'); ?>
 
 <table border="0" cellpadding="0" cellspacing="1" style="width:100%">
  <tr>
-	<th>Edit</th>
-	<th>Delete</th>
+	<td></td>
+	<td></td>
 	<?php foreach($fields as $field): ?>
 	<th><?php echo $field; ?></th>
 	<?php endforeach; ?>

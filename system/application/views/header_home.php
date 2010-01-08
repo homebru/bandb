@@ -7,16 +7,16 @@
                     </div>
                     <div class="leftTxt">
                         Online Advertising Intelligence</div>
-                    <div class="floatRight">
+                    <!--div class="floatRight">
                         <div class="inner">
                             <a href="login">login</a></div>
-                    </div>
+                    </div-->
                 </div>
             </div>
             <div id="Nav">
                 <div class="holder">
                     <ul>
-                        <li><a href="<?php echo base_url(); ?>getstarted.aspx">Get Started</a></li>
+                        <li><a href="<?php echo base_url(); ?>login">Login</a></li>
                         <li><a href="<?php echo base_url(); ?>contact_us">Contact Us</a></li>
                         <li><a href="<?php echo base_url(); ?>publishers">Publishers</a></li>
                         <li><a href="<?php echo base_url(); ?>blog">Blog</a></li>
@@ -55,7 +55,7 @@
                         </div>
                     </div>
                     <div class="floatRight">
-                        <img src="images/view-demo.jpg" id="ImageButton1" onclick="window.location='<?=base_url()?>search/demo';" />
+                        <img src="images/view-demo.png" id="ImageButton1" onclick="window.location='<?=base_url()?>search/demo';" />
                     </div>
                     <div class="clear">
                     </div>

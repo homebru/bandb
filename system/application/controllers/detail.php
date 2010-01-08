@@ -38,7 +38,7 @@ class Detail extends Application {
 		$data['bbdata'] = $query->row();
 		
 		$UserName = userID();	//The userID to use for demos is set in search.php controller
-		$query = $this->get_ClientBBDataSelectOne($UserID, $id);
+		$query = $this->get_ClientBBDataSelectOne($UserName, $id);
 		$data['ad_log'] = $query->row();
 		$data['ad_log_count'] = $query->num_rows();
 

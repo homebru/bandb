@@ -1,5 +1,5 @@
 <div id="login">
-	<h2>Logout</h2>
+	<h3><span style="color: #660099">Logout</span></h3>
 	
 	<div class="box">
 			You have been successfully logged out!

@@ -1,4 +1,5 @@
 <?php  $this->load->view('header');  ?>
+<?php $this->load->view('sidebar'); ?>
 
 <p><?php echo $scaff_no_data; ?></p>
 <p><?php echo anchor(array($base_uri, 'add'), $scaff_create_record); ?></p>

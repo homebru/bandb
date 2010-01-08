@@ -26,7 +26,7 @@ $config['auth_groups'] = array(
 /**
 * The default URI string to redirect to after a successful login.
 */
-$config['auth_login'] = 'search';	//'admin/dashboard';
+$config['auth_login'] = 'search/my';	//'admin/dashboard';
 
 /**
 * The URI string to redirect to when a user entered incorrect login details or is not authenticated

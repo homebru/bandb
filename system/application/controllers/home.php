@@ -1,10 +1,10 @@
 <?php
 
-class Home extends Controller {
+class Home extends Application {
 
 	function Home()
 	{
-		parent::Controller();	
+		parent::Application();	
 	}
 	/*
 	function index()
@@ -69,7 +69,7 @@ class Home extends Controller {
 		}
 
 		// generate header section
-		$data['header']=$this->load->view('header_home',$data,TRUE);
+		$data['header']=$this->load->view('header_user',$data,TRUE);
 		
 		// generate content section
 		$data['content']=$this->load->view('content_home',$data,TRUE);

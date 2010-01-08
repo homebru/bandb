@@ -1,4 +1,15 @@
 body {
+	background:url(<?php echo $image_url; ?>InnStrategy-bg.gif) repeat-x;
+	   font: 8pt Tahoma, sans-serif;
+	}
+.top {
+	float:left;
+	width:613px;
+	height:44px;
+	background:url(<?php echo $image_url; ?>InnStrategy-banner.gif) no-repeat;
+	}
+
+/*body {
  margin: 0;
  padding: 0;
  font-family: Lucida Grande, Verdana, Geneva, Sans-serif;
@@ -6,7 +17,7 @@ body {
  color: #4F5155;
  background: #fff url(<?php echo $image_url; ?>background.jpg) repeat-x left top;
 }
-
+*/
 a {
  color: #8B0D00;
  background-color: transparent;
@@ -60,6 +71,19 @@ a:hover {
  text-align: center;
 }
 
+#footer a:link {
+	color:#999;
+	text-decoration:none;
+}
+
+#footer a:visited {
+	color:#999;
+}
+
+#footer a:hover {
+	border-bottom:dotted 1px #999;
+}
+
 #outer {
  margin: 30px 40px 0 40px;
 }
@@ -77,7 +101,7 @@ img {
 }
 
 table {
- background-color: #efefef;
+ /*background-color: #efefef;*/
 }
 
 th {
@@ -143,3 +167,77 @@ form {
  margin: 6px 0 0 0;
  padding: 1px 5px 1px 5px;
 }
+
+.menuGeneric
+{
+    background: #DED9D0 url(<?php echo $image_url; ?>nav.gif) repeat-x;
+    height: 41px;
+    line-height: 41px;
+    border: 1px solid #996;
+  
+}
+.menuGeneric li,.menuGeneric ul { display: inline; }
+.menuGeneric a
+{
+    background: #FFF url(<?php echo $image_url; ?>nav.gif) repeat-x;
+    border-right: 1px solid #C9C6B3;
+    color: #553;
+    float: left;
+    font: bold 1em Tahoma,sans-serif;
+    line-height: 41px;
+    text-align: center;
+    text-decoration: none;
+    margin: 0px;
+    padding-right: 23px;
+    padding-left: 23px;
+    padding-bottom: 0px;
+    padding-top: 0px;
+}
+.menuGeneric a:hover { background-position: left bottom; color: #331; }
+
+#menu {
+	float:left;
+	padding-left:5px;
+	clear:left;
+	width:608px;
+	height:41px;
+	background-color:#FFFFFF;
+	}
+#container {
+		width: 980px;
+		margin: 0 auto;
+		text-align: left;
+		font-size: 1.3em;
+		background:#fff;
+	}
+	
+.error {
+	color:#990000;
+	font-weight:normal;
+}
+
+/******************
+LINKS
+******************/
+
+/* LINK VISTED HOVER ACTIVE selectors must remain in this order to work */
+#outer a:link
+{
+    color: #3366a9;
+}
+
+#outer a:visited {
+	color: #3366a9;
+	}
+
+#outer a:hover
+{
+    color: #339933;
+    text-decoration: none;
+}
+
+#outer a:active
+{
+    color: #336600;
+}
+

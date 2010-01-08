@@ -1,4 +1,5 @@
 <?php  $this->load->view('header');  ?>
+<?php $this->load->view('sidebar'); ?>
 
 <p><?php echo anchor(array($base_uri, 'view'), '&lt; '.$scaff_view_all); ?></p>
 

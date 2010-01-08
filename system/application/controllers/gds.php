@@ -1,10 +1,12 @@
 <?php
 
-class GDS extends Controller {
+class GDS extends Application {
 
 	function GDS()
 	{
-		parent::Controller();	
+		parent::Application();
+		if($this->uri->segment(2) !== 'demo')
+			$this->auth->restrict('user');
 	}
 	
 	function index()
@@ -19,7 +21,7 @@ class GDS extends Controller {
 		$this->load->helper('url');
 		$this->load->helper('html');
 		
-		$this->load->view('header_std');
+		$this->load->view('header_user');
 		$this->load->view('gds');
 		$this->load->view('footer_std');
 	}

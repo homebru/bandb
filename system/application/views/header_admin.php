@@ -3,13 +3,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title><?php echo $page_title; ?></title>
-<?php echo link_tag('css/default.css');?>
-<?php echo link_tag('favicon.ico', 'shortcut icon', 'image/ico'); ?>
+<link rel="stylesheet" type="text/css" href="<?php echo base_url()?>css/default.css" />
+<link rel="shortcut icon" href="<?php echo base_url()?>favicon.ico" />
+<?php //echo link_tag('favicon.ico', 'shortcut icon', 'image/ico'); ?>
 
 <script src="<?php echo base_url(); ?>scripts/jquery-1.3.2.min.js" type="text/javascript"></script>
 
 <?php if(strpos($_SERVER['PHP_SELF'],'detail') > -1):?>
-<?php echo link_tag('css/ui-lightness/jquery-ui-1.7.2.custom.css');?>
+<link rel="stylesheet" type="text/css" href="<?php echo base_url()?>css/ui-lightness/jquery-ui-1.7.2.custom.css" />
 <script src="<?php echo base_url(); ?>scripts/jquery-ui-1.7.2.custom.min.js" type="text/javascript"></script>
 <script type="text/javascript">
 	$(function() {
