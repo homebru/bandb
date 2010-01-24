@@ -52,7 +52,7 @@
 											   <tr>
 												<td nowrap>
 													<div style="padding-right: 15px; padding-left: 15px; padding-bottom: 5px;">
-														<a class="SideNavLink" href="<?php echo base_url() ?>maintenance/score">Scripts</a></div>
+														<a class="SideNavLink" href="<?php echo base_url() ?>admin_scripts">Scripts</a></div>
 												</td>
 											</tr>
 										</tbody>

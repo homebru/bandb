@@ -494,7 +494,9 @@ Layout Divs
     min-height: 600px;
     position: relative;
 }
-
+.content {
+	width:755px;
+}
 #search2
 {
     padding: 10px;

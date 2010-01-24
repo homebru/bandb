@@ -53,7 +53,7 @@ class Client_Search extends Application {
 		$this->load->helper('html');
 		$this->load->helper('form');
 
-		$this->load->view('header_admin');
+		$this->load->view('header_user');
 		$this->load->view('client_search', $data);
 		$this->load->view('footer_std');
 

@@ -10,10 +10,10 @@
 					</tr>
 					<tr style="height:100%;">
 						<td align="left">
-							<table cellspacing="0" cellpadding="0" border="0" style="height:100%;width:100%;border-collapse:collapse;">
+							<table cellspacing="0" cellpadding="0" border="0" style="height:100%;width:400px;border-collapse:collapse;">
 								<tr>
-									<td style="height:100%;width:100%;">
-										<table border="0" style="font-size: 100%; width: 650px">
+									<td style="height:100%;width:100%;" align="center">
+										<table border="0" style="font-size: 100%; width: 300px">
 											<tr>
 												<td align="center" colspan="2">
 													<p>Forgotten Account Password<br />
@@ -31,15 +31,15 @@
 												<td align="center" colspan="2">&nbsp;
 													</td>
 											</tr>
+								<tr>
+									<td colspan="2" align="right">
+										<input type="submit" value="Submit" name="submit" />
+									</td>
+								</tr>
 										</table>
 									</td>
 								</tr>
 							</table>
-									</td>
-								</tr>
-								<tr>
-									<td align="right">
-										<input type="submit" value="Submit" name="submit" />
 									</td>
 								</tr>
 							</table>

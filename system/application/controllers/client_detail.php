@@ -76,7 +76,7 @@ class Client_Detail extends Application {
 									'Processor' => $_POST['ddProcessor'],
 									//'Notes' => $_POST['txtNotes'],
 									//'SubscriptionStartDate'] => $_POST['txtSubscriptionStartDate'],
-									'SubscriptionEndDate'] => $_POST['txtSubscriptionEndDate'],
+									'SubscriptionEndDate' => $_POST['txtSubscriptionEndDate'],
 									'PayType' => $_POST['rblPayType'],
 									'LastUpdateDate' => $today,	//$_POST['txtLastUpdateDate'],
 									'Price' => $_POST['txtPrice']
@@ -89,14 +89,15 @@ class Client_Detail extends Application {
 					$this->admin_notes_model->update($_POST['BBDataID'], $detail);
 					
 					//$this->states_served_model->delete_all($_POST['BBDataID']);
-					foreach($state in $data['client_states'])
+					foreach($data['client_states'] as $state)
 					{
-						if($this->input->post('MyStates_'.$state['StateCode'])))
+						if($this->input->post('MyStates_'.$state['StateCode']))
 						{
 							$detail = array('StateServed' => $state['StateCode'],
 											'BBDataID' => $_POST['BBDataID']
 											);
 							$this->states_served_model->insert($detail);
+						}
 					}
 				}
 			}
@@ -110,17 +111,16 @@ class Client_Detail extends Application {
 		$data['client_states'] = $this->get_client_states($UserID);
 		$this->load->vars($data);
 
-		$this->load->view('header_admin');
+		$this->load->view('header_user');
 		$this->load->view('client_detail');
 		$this->load->view('footer_std');
 	}
 
 	function get_state_list()
 	{
-		$sql =	'SELECT States.StatesCode, States.StatesDescription
+		$sql =	'SELECT States.StatesCode, CASE States.StatesDescription WHEN \'All\' THEN \'National\' ELSE States.StatesDescription END AS StatesDescription
 				FROM States
-				WHERE States.StatesCode <> \'All\'
-				ORDER BY States.StatesDescription ASC';
+				ORDER BY States.StateID ASC';
 				
 		return ($this->db->query($sql));
 	}
@@ -141,7 +141,7 @@ class Client_Detail extends Application {
 				ClientProfile.WebEmail, ClientProfile.Contact1, ClientProfile.Title1, ClientProfile.Email1, ClientProfile.Phone1,
 				ClientProfile.Contact2, ClientProfile.Title2, ClientProfile.Email2, ClientProfile.Phone2, ClientProfile.Geo, ClientProfile.Enabled,
 				ClientProfile.Processor, ClientProfile.Notes, ClientProfile.SubscriptionStartDate, DATE_FORMAT(ClientProfile.SubscriptionEndDate,\'%m/%d/%Y\') AS SubscriptionEndDate,
-				ClientProfile.PayType, ClientProfile.LastUpdateDate, ClientProfile.Price, ClientProfile.URL, AdminNotes.AdminNote, ClientBBData.BBDataID
+				ClientProfile.PayType, ClientProfile.LastUpdateDate, ClientProfile.Price, ClientProfile.URL, AdminNotes.AdminNote, ClientBBData.BBDataID, ClientProfile.UserID
 				FROM ClientProfile
 				LEFT JOIN ClientBBData ON ClientBBData.UserID = ClientProfile.UserID
 				LEFT JOIN AdminNotes ON AdminNotes.BBDataId = ClientBBData.BBDataID

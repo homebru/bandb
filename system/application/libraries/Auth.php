@@ -121,18 +121,20 @@ class Auth
 
 		if($this->CI->form_validation->run() == FALSE)
 		{
+			/*
 			if((array_key_exists('login_attempts', $_COOKIE)) && ($_COOKIE['login_attempts'] >= 5))
 			{
 				echo $this->CI->lang->line('max_login_attempts_error');
 			}
 			else
 			{
+				*/
 				$data = array(
 								'page_title' => 'Inn Strategy - Login',
 							);
 				$this->CI->load->vars($data);
 				$this->view('login');
-			}
+		//	}
 		}
 		else
 		{
@@ -165,6 +167,9 @@ class Auth
 			{
 				$this->_generate();
 			}
+
+			if(user_group('admin') !== TRUE)
+				$redirect .= '/my';
 
 			redirect($redirect);
 		}
@@ -207,6 +212,10 @@ class Auth
 	*/
 	function register($login = FALSE, $edit = FALSE, $id = NULL)
 	{
+		$data = array(
+						'page_title' => 'Inn Strategy - Register',
+					);
+		$this->CI->load->vars($data);
 		if($edit === TRUE)
 		{
 			$this->CI->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|callback_reg_email_check');

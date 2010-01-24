@@ -55,6 +55,7 @@ $route['admin/dashboard'] = "admin/admin/index";
 $route['search/demo'] = "search";
 $route['search/my'] = "search";
 $route['search/demo/my'] = "search";
+$route['search/my/(:any)'] = "search";
 
 $route['detail/(:num)'] = "detail/show/$1";
 
@@ -66,6 +67,8 @@ $route['maintenance/(:any)'] = "$1/maintain";
 $route['maintenance'] = "pricetype/maintain";
 $route['users'] = "client_search";
 $route['client_detail/(:any)'] = "client_detail/edit/$1";
+$route['admin_detail/(:num)'] = "admin_detail/edit/$1";
+$route['admin_scripts'] = "admin_scripts/edit";
 
 /* End of file routes.php */
 /* Location: ./system/application/config/routes.php */

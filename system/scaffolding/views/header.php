@@ -10,7 +10,7 @@
 
 <!--link rel="stylesheet" type="text/css" href="<?php echo base_url()?>css/default.css" /-->
 <link rel="shortcut icon" href="<?php echo $image_url; ?>favicon.ico" />
-<?php //echo link_tag('favicon.ico', 'shortcut icon', 'image/ico'); ?>
+<link href="<?php echo base_url(); ?>favicon.ico" rel="shortcut icon" type="image/ico" />
 
 <style type='text/css'>
 <?php $this->file(BASEPATH.'scaffolding/views/stylesheet.css'); ?>
@@ -18,17 +18,41 @@
 
 </head>
 <body>
-	<div class="holder2" style="font-size: 8pt; font-family: Tahoma">
-		<div class="top" style="width:100%; margin-bottom:10px;">
+	<!--div class="holder2" style="font-size: 8pt; font-family: Tahoma">
+		<!--div class="top" style="width:100%; margin-bottom:10px;">
 			<div style="text-align: right; padding-right: 30px; padding-top:15px;">
 				<span id="lblDateStamp" class="TopLabel" style="color:LightGrey;"><?php echo date("l, F j, Y"); ?></span>
 			</div>
 		</div>
-		<br style="clear:both;" />
+		<br style="clear:both;" /-->
 	   
-			
+
+	<div style="background-color:#ffffff;">
+		<div id="Header">
+			<div class="holder">
+				<h1 class="logo">
+					<a href="#">Inn Strategy</a></h1>
+				<div class="headImg">
+				</div>
+				<div class="leftTxt">
+					Online Advertising Intelligence</div>
+			</div>
+		</div>
+		<div id="Nav">
+			<div class="holder">
+				<ul>
+					<li><a <?php echo $this->uri->segment(1) === 'login' ? 'class="on"' : ''; ?> href="<?php echo base_url(); ?><?php echo logged_in() ? 'logout">Logout' : 'login">Login'; ?></a></li>
+					<li><a <?php echo $this->uri->segment(1) === 'maintenance' ? 'class="on"' : ''; ?> href="<?php echo base_url(); ?>maintenance">Maintenance</a></li>
+					<li><a <?php echo ($this->uri->segment(1) === 'users') || ($this->uri->segment(1) === 'client_detail') ? 'class="on"' : ''; ?> href="<?php echo base_url(); ?>users">User Accounts</a></li>
+					<li><a <?php echo ($this->uri->segment(1) === 'search') || ($this->uri->segment(1) === 'detail') ? 'class="on"' : ''; ?> href="<?php echo base_url(); ?>search">Travel Directory</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	
+				
 		<div class="main">
-			<div>
+			<!--div>
 			<table><tr><td>
 				<table>
 					<tr>

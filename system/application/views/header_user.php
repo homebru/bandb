@@ -49,20 +49,30 @@
 			<div class="holder">
 				<ul>
 					<li><a <?php echo $this->uri->segment(1) === 'login' ? 'class="on"' : ''; ?> href="<?php echo base_url(); ?><?php echo logged_in() ? 'logout">Logout' : 'login">Login'; ?></a></li>
-					<li><a <?php echo $this->uri->segment(1) === 'contact_us' ? 'class="on"' : ''; ?> href="<?php echo base_url(); ?>contact_us">Contact Us</a></li>
-					<li><a <?php echo $this->uri->segment(1) === 'blog' ? 'class="on"' : ''; ?> href="<?php echo base_url(); ?>blog">Blog</a></li>
+					<?php if($this->session->userdata('group_id') != 1) { ?>
+						<li><a <?php echo $this->uri->segment(1) === 'contact_us' ? 'class="on"' : ''; ?> href="<?php echo base_url(); ?>contact_us">Contact Us</a></li>
+						<li><a <?php echo $this->uri->segment(1) === 'blog' ? 'class="on"' : ''; ?> href="<?php echo base_url(); ?>blog">Blog</a></li>
+					<?php } ?>
 					<?php if($this->auth->logged_in()) { ?>
-						<li><a <?php echo $this->uri->segment(1) === 'gds' ? 'class="on"' : ''; ?> href="<?php echo base_url(); ?>gds">GDS</a></li>
-						<li><a <?php echo $this->uri->segment(1) === 'profile' ? 'class="on"' : ''; ?> href="<?php echo base_url(); ?>profile<?php echo ($this->uri->segment(2) === 'demo') ? '/demo' : ''; ?>">My Account</a></li>        
-						<li><a <?php echo (($this->uri->segment(1) === 'search') && ($this->uri->segment(2) !== 'my')) ? 'class="on"' : ''; ?> href="<?php echo base_url(); ?>search<?php echo ($this->uri->segment(2) === 'demo') ? '/demo' : ''; ?>">Travel Database</a></li>
-						<li><a <?php echo (($this->uri->segment(2) === 'my') || ($this->uri->segment(3) === 'my')) ? 'class="on"' : ''; ?> href="<?php echo base_url(); ?>search<?php echo ($this->uri->segment(2) === 'demo') ? '/demo' : ''; ?>/my">My List</a></li>
-					<?php } else { ?>
+						<?php if($this->session->userdata('group_id') == 1) { ?>
+								<li><a <?php echo ($this->uri->segment(1) === 'maintenance') || ($this->uri->segment(1) === 'admin_scripts') ? 'class="on"' : ''; ?> href="<?php echo base_url(); ?>maintenance">Maintenance</a></li>
+								<li><a <?php echo ($this->uri->segment(1) === 'users') || ($this->uri->segment(1) === 'client_detail') ? 'class="on"' : ''; ?> href="<?php echo base_url(); ?>users">User Accounts</a></li>
+								<li><a <?php echo ($this->uri->segment(1) === 'search') || ($this->uri->segment(1) === 'detail') || ($this->uri->segment(1) === 'admin_detail')? 'class="on"' : ''; ?> href="<?php echo base_url(); ?>search">Travel Directory</a></li>
+						<?php } else { //not admin user ?>
+								<li><a <?php echo $this->uri->segment(1) === 'gds' ? 'class="on"' : ''; ?> href="<?php echo base_url(); ?>gds">GDS</a></li>
+								<li><a <?php echo $this->uri->segment(1) === 'profile' ? 'class="on"' : ''; ?> href="<?php echo base_url(); ?>profile<?php echo ($this->uri->segment(2) === 'demo') ? '/demo' : ''; ?>">My Account</a></li>        
+								<li><a <?php echo (($this->uri->segment(1) === 'search') && ($this->uri->segment(2) !== 'my')) ? 'class="on"' : ''; ?> href="<?php echo base_url(); ?>search<?php echo ($this->uri->segment(2) === 'demo') ? '/demo' : ''; ?>">Travel Database</a></li>
+								<li><a <?php echo (($this->uri->segment(2) === 'my') || ($this->uri->segment(3) === 'my')) ? 'class="on"' : ''; ?> href="<?php echo base_url(); ?>search<?php echo ($this->uri->segment(2) === 'demo') ? '/demo' : ''; ?>/my">My List</a></li>
+						<?php } ?>
+					<?php } else { // not logged in ?>
 						<li><a <?php echo $this->uri->segment(1) === 'publishers' ? 'class="on"' : ''; ?> href="<?php echo base_url(); ?>publishers">Publishers</a></li>
 						<li><a <?php echo $this->uri->segment(1) === 'pricing' ? 'class="on"' : ''; ?> href="<?php echo base_url(); ?>pricing">Our Services</a></li>
 					<?php } ?>
-					<li><a <?php echo $this->uri->segment(1) === 'glossary' ? 'class="on"' : ''; ?> href="<?php echo base_url(); ?>glossary">Glossary</a></li>
-					<li><a <?php echo $this->uri->segment(1) === 'about_us' ? 'class="on"' : ''; ?> href="<?php echo base_url(); ?>about_us">About Us</a></li>
-					<li><a <?php echo $this->uri->total_segments() == 0 ? 'class="on"' : ''; ?> href="<?php echo base_url(); ?>">Home</a></li>
+					<?php if($this->session->userdata('group_id') != 1) { ?>
+						<li><a <?php echo $this->uri->segment(1) === 'glossary' ? 'class="on"' : ''; ?> href="<?php echo base_url(); ?>glossary">Glossary</a></li>
+						<li><a <?php echo $this->uri->segment(1) === 'about_us' ? 'class="on"' : ''; ?> href="<?php echo base_url(); ?>about_us">About Us</a></li>
+						<li><a <?php echo $this->uri->total_segments() == 0 ? 'class="on"' : ''; ?> href="<?php echo base_url(); ?>">Home</a></li>
+					<?php } ?>
 				</ul>
 			</div>
 		</div>

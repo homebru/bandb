@@ -91,7 +91,12 @@ class Search extends Application {
 		$AdPackage = isset($_POST['ddAdPackage']) ? $_POST['ddAdPackage'] : '';
 		$State = isset($_POST['ddStates']) ? $_POST['ddStates'] : '';
 		$LinkType = isset($_POST['ddLinkType']) ? $_POST['ddLinkType'] : '';
-		$UserName = userID();	//'13baaeb6-1bba-4bad-8893-3f0bca64e274'; //'b61fc9d0-d42f-4a8d-a8ae-f75042c1f039';
+		
+		if(($this->uri->total_segments() == 3) && ($this->uri->segment(2) !== 'demo'))
+			$UserName = $this->uri->segment(3);
+		else
+			$UserName = userID();	//'13baaeb6-1bba-4bad-8893-3f0bca64e274'; //'b61fc9d0-d42f-4a8d-a8ae-f75042c1f039';
+		$data['client_name'] = $this->get_client_name($UserName);
 		
 		$LinkPR = '';
 		for($i=0; $i<10; $i++)
@@ -116,7 +121,10 @@ class Search extends Application {
 		$my_list = ($this->uri->segment(2) == 'my') || ($this->uri->segment(3) == 'my');	//!($this->uri->segment(2) === FALSE) && ($this->uri->segment(2) !== 'demo');
 		
 		if(user_group('admin') === TRUE)
-			$query = $this->client_admin_search($Rating, $LinkPR, $MaxPR, $Quantified, $BBSpecials, $Yahoo, $BBCategory, $MSN, $Google, $UserReview, $PriceType, $LinkType, $AdPackage, $Website, $Classification, $State, $Limited, $sort_column, $sort_direction);
+			if($my_list)
+				$query = $this->client_data_search($Website, $Classification, $PriceType, $BBSpecials, $UserReview, $Google, $Yahoo, $MSN, $Quantified, $VacationRental, $Rating, $Limited, $UserName, $LinkPR, $BBCategory, $LinkType, $sort_column, $sort_direction);
+			else
+				$query = $this->client_admin_search($Rating, $LinkPR, $MaxPR, $Quantified, $BBSpecials, $Yahoo, $BBCategory, $MSN, $Google, $UserReview, $PriceType, $LinkType, $AdPackage, $Website, $Classification, $State, $Limited, $sort_column, $sort_direction);
 		else	
 			$query = $this->client_data_search($Website, $Classification, $PriceType, $BBSpecials, $UserReview, $Google, $Yahoo, $MSN, $Quantified, $VacationRental, $Rating, $Limited, $UserName, $LinkPR, $BBCategory, $LinkType, $sort_column, $sort_direction);
 	
@@ -133,7 +141,7 @@ class Search extends Application {
 		$this->load->helper('form');
 		$this->load->library('ajax');
 		
-		$this->load->view(user_group('admin') === TRUE ? 'header_admin' : 'header_user');
+		$this->load->view(user_group('admin') === TRUE ? 'header_user' : 'header_user');
 		$this->load->view($my_list ? 'my_list' : (user_group('admin') === TRUE ? 'admin_search' : 'search'), $data);
 		$this->load->view('footer_std');
 		
@@ -236,6 +244,16 @@ class Search extends Application {
 		return ($this->db->query($sql));
 	}
 		
+	function get_client_name($UserID)
+	{
+		$query = $this->db->query('SELECT username 
+				FROM users
+				WHERE UserID = \'' . $UserID . '\'');
+				
+		$row = $query->row(); 
+		return ($row->username);
+	}
+		
 	function client_my_list_search($UserName)
 	{
 		return ($this->db->query (  'SELECT BBData.BBDataId, BBData.WebsiteText, BBData.Website, BBData.Rating, ClientBBData.DateExpires, ClientBBData.Price, BBData.UserReview, 
@@ -248,7 +266,7 @@ class Search extends Application {
                 				      PriceType ON BBData.PriceType = PriceType.PriceID 
 									LEFT OUTER JOIN
 				                      Classification ON BBData.Classification = Classification.ClassficationID
-									WHERE (ClientBBData.UserID = \'' . $UserName . '\') AND ()
+									WHERE (ClientBBData.UserID = \'' . $UserName . '\') 
 									ORDER BY BBData.WebsiteText'));
 		
 	}
@@ -303,48 +321,6 @@ class Search extends Application {
 
 
 			WHERE b.BBDataId IN (' . $sub_query . ')';
-
-/*
-			$sql = 'SELECT b.BBDataID, c.ClassficationText, ClientBBData.ClientBBDataId, b.WebSiteText, 
-					b.LastUpdated, b.QuantcastCurrent, b.QuantcastChange, b.CompeteCurrent, b.CompeteChange, b.Rating, 
-					COALESCE(ClientBBData.BBDataID,0) AS Checked, b.Price,
-					LinkType.LinkTypeText as LinkType, b.BBCategory, b.LinkPR, PriceType.PriceTypeText AS PriceType, 
-					b.UserReview, b.BBListSpecials, COALESCE(b.VacationRental, 0) As VacationRental
-					FROM Classification c
-					INNER JOIN 
-					BBData b ON c.ClassficationID = b.Classification
-		
-					LEFT OUTER JOIN
-					PriceType ON b.PriceType = PriceType.PriceID 
-		
-					INNER JOIN
-					StatesServed ON b.BBDataId = StatesServed.BBDataId 
-		
-					LEFT OUTER JOIN
-					LinkType ON b.LinkType= LinkType.LinkTypeID
-					
-					LEFT OUTER JOIN
-					ClientBBData ON b.BBDataId =
-					 (SELECT     ClientBBData.BBDataID FROM ClientBBData
-						 WHERE      (ClientBBData.UserID = \'' . $UserName . '\') LIMIT 0, 1)
-		
-		
-					INNER JOIN
-					ClientStates ON StatesServed.StateServed =
-						  (SELECT    ClientStates.StateCode FROM ClientStates
-							WHERE      (ClientStates.UserID = \'' . $UserName . '\') LIMIT 0, 1) 
-		
-		
-					WHERE b.Enabled = 1
-					AND Classification = c.ClassficationID AND c.ClassficationID <> 32
-				';
-
-/*
-					WHERE b.BBDataId IN (SELECT BBDataID
-										FROM BBData
-										WHERE BBData.Enabled = 1)
-					AND Classification = c.ClassficationID AND c.ClassficationID <> 32
-*/
 
 		} else {
 

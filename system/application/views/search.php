@@ -114,7 +114,7 @@
 		<?php $row_num = 0; ?>
 		<?php foreach($bbdata as $row): ?>
 		<tr style="color:#333333; background-color:#<?php echo (($row_num % 2) == 0) ? 'F7F6F3' : 'FFFFFF' ?>;">
-			<td align="left" style="width:140px;"><a href="<?php echo base_url() ?>detail/<?php echo $row['BBDataID'] ?>"><?php echo $row['WebSiteText'] ?></a></td>
+			<td align="left" style="width:140px;"><a href="<?php echo base_url() ?>detail/<?= $row['BBDataID'] ?>"><?php echo $row['WebSiteText'] ?></a></td>
 			<td align="left" style="width:80px;"><span id="gvResult_ctl02_imgButton"><?php for($i=0; $i<$row['Rating']; $i++) { echo "<IMG src='". base_url() ."images/star_active.gif'>"; } ?></span></td>
 			<td align="left"><?php echo $row['ClassficationText'] ?></td>
 			<td align="left" style="width:80px;"><?php echo $row['Price'] ?></td>

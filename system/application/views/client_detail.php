@@ -1,3 +1,18 @@
+<script type="text/javascript">
+function swapInputType()
+	{
+		if($("#rblGeo_0").attr('checked') == true)
+			{
+			$("#cbstates").hide();
+			$("#rbstates").show();
+			}
+		else
+			{
+			$("#rbstates").hide();
+			$("#cbstates").show();
+			}
+	}
+</script>
 <form method="post">
 	<input type="hidden" name="BBDataID" value="<?= $client->BBDataID ?>" />
     <div>
@@ -5,7 +20,7 @@
         <input type="submit" name="btnSaveReturnTop" value="Save Return to Search" id="btnSaveReturnTop" class="texta" style="width:152px;" />&nbsp;
     </div>
     <div>
-        <fieldset class="content">
+        <fieldset style="width:758px;">
             <legend>Client Detail Page</legend>
             <table style="width: 750px; background-color: #F7F6F3;">
                 <tr>
@@ -65,8 +80,8 @@
                     <td style="width: 102px">
                         <span id="lblGeo">Geo :</span></td>
                     <td colspan="3">
-                        <span id="rblGeo"><input id="rblGeo_0" type="radio" name="rblGeo" value="1" <?php echo $client->Geo == 1 ? 'checked="checked"' : '' ?> /><label for="rblGeo_0">One</label>
-						<input id="rblGeo_1" type="radio" name="rblGeo" value="0" <?php echo $client->Geo == 0 ? 'checked="checked"' : '' ?> /><label for="rblGeo_1">Many</label></span>
+                        <span id="rblGeo"><input id="rblGeo_0" type="radio" name="rblGeo" value="1" onchange="swapInputType();" <?php echo $client->Geo == 1 ? 'checked="checked"' : '' ?> /><label for="rblGeo_0">One</label>
+						<input id="rblGeo_1" type="radio" name="rblGeo" value="0" onchange="swapInputType();" <?php echo $client->Geo == 0 ? 'checked="checked"' : '' ?> /><label for="rblGeo_1">Many</label></span>
 					</td>
                     <td colspan="7">
                         <span id="lblEnabled">Account Enabled :</span>
@@ -98,7 +113,7 @@
                         </td>
                     <td colspan="7">
                         <span id="Label1" style="display:inline-block;width:111px;">Advertised Sites :</span>
-                        <a id="hlAdSites" href="Adsites.aspx?ID=13baaeb6-1bba-4bad-8893-3f0bca64e274">Go</a></td>
+                        <a id="hlAdSites" href="<?= base_url() ?>search/my/<?= $client->UserID ?>">Go</a></td>
                     <td>
                     </td>
                 </tr>
@@ -131,7 +146,7 @@
     </div>
 
     <div>
-        <fieldset class="content">
+        <fieldset style="width:758px;">
             <legend>Contacts Details</legend>
             <table style="width: 750px; background-color: #F7F6F3;">
                 <tr>
@@ -189,7 +204,7 @@
     </div>
 
     <div>
-        <fieldset>
+        <fieldset style="width:758px;">
             <legend>Admin Notes</legend>
             <table style="width: 750px; background-color: #F7F6F3;">
                 <tr>
@@ -200,8 +215,8 @@
         </fieldset>
     </div>
 
-    <div>
-        <fieldset class="content">
+    <div id="cbstates" style="display:<?= $client->Geo == 0 ? 'block' : 'none' ?>;">
+        <fieldset style="width:758px;">
             <legend>States</legend>
             <div id="MyStates_myStates">
 				<table id="MyStates_tblStates" style="width: 750px; background-color: #F7F6F3;">
@@ -217,19 +232,73 @@
 									} ?>
 									<td style="width: 150px;"><input name="MyStates_All" type="checkbox" id="MyStates_All" <?= $checked ?> value="All" />National</td>
 							<?php } else { ?>
-								<?php $state = $states->row_array($r*5+$j);
+								<?php $state = $states->row_array((10*$j)+$r);
 									  $checked = '';
 									  if($state['StatesCode'] === $clientState->StateCode) {
 										$checked = 'checked = "checked"';
 										$clientState = $client_states->next_row();
 									  } ?>
 									<td style="width: 150px;"><input name="MyStates_<?= $state['StatesCode'] ?>" type="checkbox" id="MyStates_<?= $state['StatesCode'] ?>" <?= $checked ?> value="<?= $state['StatesCode'] ?>" /><?= $state['StatesDescription'] ?></td>
-									<?php if($state['StatesCode'] === "WY")
-										break;
-								 } 
+								<?php } 
 							} ?>
 						</tr>
 					<?php } ?>
+					<tr>
+					<?php $state = $states->row_array((10*$j)+1);
+						  $checked = '';
+						  if(($state['StatesCode'] === $clientState->StateCode) && !$found_checked) {
+							$checked = 'checked = "checked"';
+							$found_checked = true;
+							$clientState = $client_states->next_row();
+						  } ?>
+						<td style="width: 150px;"><input name="MyStates_<?= $state['StatesCode'] ?>" type="checkbox" id="MyStates_<?= $state['StatesCode'] ?>" <?= $checked ?> value="<?= $state['StatesCode'] ?>" /><?= $state['StatesDescription'] ?></td>
+					</tr>
+				</table>
+			</div>
+		</fieldset>
+	</div>
+
+    <div id="rbstates" style="display:<?= $client->Geo == 1 ? 'block' : 'none' ?>;">
+        <fieldset style="width:758px;">
+            <legend>States</legend>
+            <div id="MyStates_myStates">
+				<table id="MyStates_tblStates" style="width: 750px; background-color: #F7F6F3;">
+					<?php $clientState = $client_states->first_row(); ?>
+					<?php $found_checked = false; ?>
+					<?php for($r=0; $r<11; $r++) { ?>
+						<tr>
+						<?php for($j=0; $j<5; $j++) { ?>
+							<?php if(($r == 0) && ($j == 0)) {
+									$checked = '';
+									if($clientState->StateCode === 'All') {
+										$checked = 'checked = "checked"';
+										$$found_checked = true;
+										$clientState = $client_states->next_row();
+									} ?>
+									<td style="width: 150px;"><input name="MyStates" type="radio" id="MyStates_All" <?= $checked ?> value="All" />National</td>
+							<?php } else { ?>
+								<?php $state = $states->row_array((10*$j)+$r);
+									  $checked = '';
+									  if(($state['StatesCode'] === $clientState->StateCode) && !$found_checked) {
+										$checked = 'checked = "checked"';
+										$found_checked = true;
+										$clientState = $client_states->next_row();
+									  } ?>
+									<td style="width: 150px;"><input name="MyStates" type="radio" id="MyStates_<?= $state['StatesCode'] ?>" <?= $checked ?> value="<?= $state['StatesCode'] ?>" /><?= $state['StatesDescription'] ?></td>
+								<?php } 
+							} ?>
+						</tr>
+					<?php } ?>
+					<tr>
+					<?php $state = $states->row_array((10*$j)+1);
+						  $checked = '';
+						  if(($state['StatesCode'] === $clientState->StateCode) && !$found_checked) {
+							$checked = 'checked = "checked"';
+							$found_checked = true;
+							$clientState = $client_states->next_row();
+						  } ?>
+						<td style="width: 150px;"><input name="MyStates" type="radio" id="MyStates_<?= $state['StatesCode'] ?>" <?= $checked ?> value="<?= $state['StatesCode'] ?>" /><?= $state['StatesDescription'] ?></td>
+					</tr>
 				</table>
 			</div>
 		</fieldset>

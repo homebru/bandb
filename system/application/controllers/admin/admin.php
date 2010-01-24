@@ -83,6 +83,10 @@ class Admin extends Application
 	
 	function forgot()
 	{
+		$data = array(
+						'page_title' => 'Inn Strategy - Forgot Password',
+					);
+		$this->load->vars($data);
 		$this->form_validation->set_rules('Email', 'Email', 'trim|required|valid_email|callback_forgot_email_check');
 		
 		if ($this->form_validation->run() == FALSE)

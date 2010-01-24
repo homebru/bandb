@@ -235,7 +235,7 @@
 		<?php $row_num = 0; ?>
 		<?php foreach($bbdata as $row): ?>
 		<tr style="color:#333333; background-color:#<?php echo (($row_num % 2) == 0) ? 'F7F6F3' : 'FFFFFF' ?>;">
-			<td align="left"><a href="<?php echo base_url() ?>detail/<?php echo $row['BBDataID'] ?>"><?php echo $row['WebSiteText'] ?></a></td>
+			<td align="left"><a href="<?php echo base_url() ?><? echo (user_group('admin') === TRUE) ? 'admin_' : '' ?>detail/<?= $row['BBDataID'] ?>"><?php echo $row['WebSiteText'] ?></a></td>
 			<td align="left" nowrap="nowrap">
 				<?php if($row['Rating'] == 0) { ?>
 					NR
